@@ -1,0 +1,31 @@
+{
+	"name": "travel-bug",
+	"version": "1.0.0",
+	"description": "* [User-Story](#user-story)\r   * [Description](#description)\r   * [Installation](#installation)\r   * [Usage](#usage)\r   * [Contributions](#contributions)\r   * [Tests](#tests)\r   * [License](#license)\r   * [Questions](#questions)",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Metelak/Travel-bug.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Metelak/Travel-bug/issues"
+	},
+	"homepage": "https://github.com/Metelak/Travel-bug#readme",
+	"devDependencies": {
+		"eslint": "^8.10.0",
+		"eslint-config-prettier": "^8.4.0",
+		"prettier": "^2.5.1"
+	},
+	"dependencies": {
+		"dotenv": "^16.0.0",
+		"express": "^4.17.3",
+		"mysql2": "^2.3.3",
+		"sequelize": "^6.17.0"
+	}
+}
