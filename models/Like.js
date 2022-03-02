@@ -3,23 +3,15 @@ const { Model, DataTypes } = require("sequelize");
 //import our database connection from config.js
 const sequelize = require("../config/connection");
 
-class Rating extends Model {}
+class Like extends Model {}
 
-Rating.init(
+Like.init(
 	{
 		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true
-		},
-		rating: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			validate: {
-				max: 5,
-				min: 1
-			}
 		},
 		user_id: {
 			type: DataTypes.INTEGER,
@@ -38,11 +30,11 @@ Rating.init(
 	},
 	{
 		sequelize,
-		timestamps: false,
+		timestamps: true,
 		freezeTableName: true,
 		underscored: true,
-		modelName: "rating"
+		modelName: "like"
 	}
 );
 
-module.exports = Rating;
+module.exports = Like;

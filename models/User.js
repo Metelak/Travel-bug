@@ -37,7 +37,7 @@ User.init(
 		location_id: {
 			type: DataTypes.INTEGER,
 			references: {
-				model: "Location",
+				model: "location",
 				key: id
 			}
 		},
@@ -51,7 +51,7 @@ User.init(
 		likes_id: {
 			type: DataTypes.INTEGER,
 			references: {
-				model: "likes",
+				model: "like",
 				key: "id"
 			}
 		}
@@ -62,7 +62,7 @@ User.init(
 		timestamps: false,
 		freezeTableName: true,
 		underscored: true,
-		modelName: "User"
+		modelName: "user"
 	}
 );
 
