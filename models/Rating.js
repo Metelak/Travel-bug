@@ -31,7 +31,7 @@ Rating.init(
 		location_id: {
 			type: DataTypes.INTEGER,
 			references: {
-				model: "locations",
+				model: "location",
 				key: "id"
 			}
 		}
