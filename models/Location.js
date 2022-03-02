@@ -17,10 +17,11 @@ Location.init(
         type: DataTypes.STRING,
         allowNull: false
       },
-      picture: {
-        type: DataTypes.VARCHAR,
-        allowNull: false,
-      },
+    // need to determine how we will add photos... either by user URL or API
+      // picture: {
+      //   type: DataTypes.VARCHAR,
+      //   allowNull: false,
+      // },
       text: {
         type: DataTypes.TEXT,
         allowNull: false,
