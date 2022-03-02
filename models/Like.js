@@ -16,14 +16,14 @@ Like.init(
 		user_id: {
 			type: DataTypes.INTEGER,
 			references: {
-				model: "User",
+				model: "user",
 				key: "id"
 			}
 		},
 		location_id: {
 			type: DataTypes.INTEGER,
 			references: {
-				model: "Location",
+				model: "location",
 				key: "id"
 			}
 		}
@@ -33,7 +33,7 @@ Like.init(
 		timestamps: true,
 		freezeTableName: true,
 		underscored: true,
-		modelName: "Like"
+		modelName: "like"
 	}
 );
 

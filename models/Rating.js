@@ -31,7 +31,7 @@ Rating.init(
 		location_id: {
 			type: DataTypes.INTEGER,
 			references: {
-				model: "Locations",
+				model: "locations",
 				key: "id"
 			}
 		}
@@ -41,7 +41,7 @@ Rating.init(
 		timestamps: false,
 		freezeTableName: true,
 		underscored: true,
-		modelName: "Rating"
+		modelName: "rating"
 	}
 );
 
