@@ -24,14 +24,16 @@ Comment.init(
 			references: {
 				model: "user",
 				key: "id"
-			}
+			},
+			onDelete: 'SET NULL'
 		},
 		location_id: {
 			type: DataTypes.INTEGER,
 			references: {
 				model: "location",
 				key: "id"
-			}
+			},
+			onDelete: 'SET NULL'
 		}
 	},
 	{
