@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Location, Comment, Likes, Rating } = require("../../models");
+const { User, Location, Comment, Like, Rating } = require("../../models");
 // const withAuth = require('../../utils/auth');
 
 // get all users
@@ -38,8 +38,13 @@ router.get("/:id", (req, res) => {
 				attributes: ["title"],
 				through: Rating,
 				as: "rated_locations"
+			},
+            {
+				model: Location,
+				attributes: ["title"],
+				through: Like,
+				as: "liked_locations"
 			}
-            // add in liked locations
 		]
 	})
 		.then((dbUserData) => {
