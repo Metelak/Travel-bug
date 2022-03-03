@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     Comment.findAll({
         include: {
             model: User,
-            attributes: ['id', '', '', '', '']
+            attributes: ['id', 'username', 'email', '', '']
 
         }
 
