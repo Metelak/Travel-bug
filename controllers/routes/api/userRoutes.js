@@ -39,7 +39,7 @@ router.get("/:id", (req, res) => {
 				through: Rating,
 				as: "rated_locations"
 			},
-            {
+			{
 				model: Location,
 				attributes: ["title"],
 				through: Like,

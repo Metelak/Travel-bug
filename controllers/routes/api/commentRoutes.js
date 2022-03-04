@@ -1,51 +1,49 @@
-const router = require('express').Router();
+const router = require("express").Router();
 // const sequelize = require('../../config/connection');
 const { Comment, User } = require('../../../models');
 const withAuth = require('../../../utils/auth');
 
+
 //GET all comments
-router.get('/', (req, res) => {
-    // find all comments
-    //including associated Users
-    Comment.findAll({
-        include: {
-            model: User,
-            attributes: ['id', '', '', '', '']
-
-        }
-
-    })
-        .then(dbCommentData => {
-            if (!dbCommentData) {
-                res.status(404).json({ message: 'Cannot find comments' });
-                return;
-            }
-            res.json(dbCommentData);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err)
-        });
+router.get("/", (req, res) => {
+	// find all comments
+	//including associated Users
+	Comment.findAll({
+		include: {
+			model: User,
+			attributes: ["id", "username", "email", "", ""]
+		}
+	})
+		.then((dbCommentData) => {
+			if (!dbCommentData) {
+				res.status(404).json({ message: "Cannot find comments" });
+				return;
+			}
+			res.json(dbCommentData);
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
 });
 
 //GET a single comment
-router.get('/:id', (req, res) => {
-    Comment.findOne({
-        where: {
-            id: req.params.id
-        },
-        include: {
-            model: User,
-            attributes: ['id', '', '', '', '']
-        }
-    })
-        .then(dbCommentData => {
-            if (!dbCommentData) {
-                res.status(404).json({ message: 'Cannot find comment by ID' });
-                return;
-            }
-            res.status(500).json(err)
-        });
+router.get("/:id", (req, res) => {
+	Comment.findOne({
+		where: {
+			id: req.params.id
+		},
+		include: {
+			model: User,
+			attributes: ["id", "", "", "", ""]
+		}
+	}).then((dbCommentData) => {
+		if (!dbCommentData) {
+			res.status(404).json({ message: "Cannot find comment by ID" });
+			return;
+		}
+		res.status(500).json(err);
+	});
 });
 
 router.post('/', withAuth, (req, res) => {
@@ -94,7 +92,7 @@ router.delete('/:id',withAuth, (req, res) => {
         console.log(err);
         res.status(500).json(err);
     });
-});
 
+});
 
 module.exports = router;
