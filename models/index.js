@@ -34,11 +34,13 @@ Comment.belongsTo(User, {
 // Like associations
 
 User.belongsToMany(Location, {
-	through: Like
+	through: Like,
+	foreignKey: "likes_id"
 });
 
 Location.belongsToMany(User, {
-	through: Like
+	through: Like,
+	foreignKey: "likes_id"
 });
 
 // Location Associations
@@ -49,6 +51,10 @@ Location.hasMany(Comment, {
 
 Comment.belongsTo(Location, {
 	foreignKey: "location_id"
+});
+
+Location.hasOne(Rating, {
+	foreignKey: ""
 });
 
 module.exports = {
