@@ -33,6 +33,13 @@ Location.init(
 				key: "id"
 			},
 			onDelete: "SET NULL"
+		},
+		rating_id: {
+			type: DataTypes.INTEGER,
+			references: {
+				model: "rating",
+				key: "id"
+			}
 		}
 	},
 	{
