@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Comment } = require("../../../models");
+const { Comment, User, Location } = require("../../../models");
 // const sequelize = require('../../config/connection');
 const withAuth = require("../../../utils/auth");
 
@@ -8,10 +8,16 @@ router.get("/", (req, res) => {
 	// find all comments
 	//including associated Users
 	Comment.findAll({
-		include: {
-			model: User,
-			attributes: ["id", "username", "email", "", ""]
-		}
+		include: [
+			{
+				model: User,
+				attributes: ["id", "username", "email"]
+			},
+			{
+				model: Location,
+				attributes: ["title", "text", "user_id"]
+			}
+		]
 	})
 		.then((dbCommentData) => {
 			if (!dbCommentData) {
