@@ -1,6 +1,12 @@
 const router = require("express").Router();
+const { Comment } = require("../../../models");
+
+router.get("/", (req, res) => {
+	Comment.findAll()
+		.then((dbCommentData) => res.json(dbCommentData))
 // const sequelize = require('../../config/connection');
-const { Comment, User } = require("../../../models");
+const withAuth = require('../../../utils/auth');
+
 
 //GET all comments
 router.get("/", (req, res) => {
@@ -19,44 +25,12 @@ router.get("/", (req, res) => {
 			}
 			res.json(dbCommentData);
 		})
-		.catch((err) => {
-			console.log(err);
-			res.status(500).json(err);
-		});
-});
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  }
 
-//GET a single comment
-router.get("/:id", (req, res) => {
-	Comment.findOne({
-		where: {
-			id: req.params.id
-		},
-		include: {
-			model: User,
-			attributes: ["id", "", "", "", ""]
-		}
-	}).then((dbCommentData) => {
-		if (!dbCommentData) {
-			res.status(404).json({ message: "Cannot find comment by ID" });
-			return;
-		}
-		res.status(500).json(err);
-	});
-});
-
-router.post("/", (req, res) => {
-	//create a new comment
-	Comment.create({
-		comment_name: req.body.comment_name
-	})
-		.then((dbCommentData) => res.json(dbCommentData))
-		.catch((err) => {
-			console.log(err);
-			res.status(500).json(err);
-		});
-});
-
-router.put("/:id", (req, res) => {
+router.put("/:id", withAuth, (req, res) => {
 	//update a comment by its 'id' value
 	Comment.update(req.body, {
 		where: {
@@ -76,24 +50,40 @@ router.put("/:id", (req, res) => {
 		});
 });
 
-router.delete("/:id", (req, res) => {
-	//delete a comment by its 'id' value
-	Comment.destroy({
-		where: {
-			id: req.params.id
-		}
-	})
-		.then((dbCommentData) => {
-			if (!dbCommentData) {
-				res.status(404).json({ message: "Comment ID not found" });
-				return;
-			}
-			res.json(dbCommentData);
+router.post("/", withAuth, (req, res) => {
+	// expects => {comment_text: "This is the comment", user_id: 1, location_id: 2}
+	if (req.session) {
+		Comment.create({
+			comment_text: req.body.comment_text,
+			user_id: req.session.user_id,
+			location_id: req.body.location_id
 		})
-		.catch((err) => {
-			console.log(err);
-			res.status(500).json(err);
-		});
+			.then((dbCommentData) => res.json(dbCommentData))
+			.catch((err) => {
+				console.log(err);
+				res.status(400).json(err);
+			});
+	}
 });
 
+router.delete("/:id", (req, res) => {
+	if (req.session) {
+		Comment.destroy({
+			where: {
+				id: req.params.id
+			}
+		})
+			.then((dbCommentData) => {
+				if (!dbCommentData) {
+					res.status(404).json({ message: "No comment found with this id!" });
+					return;
+				}
+				res.json(dbCommentData);
+			})
+			.catch((err) => {
+				console.log(err);
+				res.status(500).json(err);
+			});
+	}
+});
 module.exports = router;
