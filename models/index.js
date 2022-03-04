@@ -59,7 +59,7 @@ Location.hasOne(Rating, {
 	foreignKey: "location_id"
 });
 
-Rating.hasOne(Location, {
+Rating.belongsTo(Location, {
 	foreignKey: "location_id"
 });
 
