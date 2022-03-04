@@ -38,7 +38,7 @@ User.init(
 			type: DataTypes.INTEGER,
 			references: {
 				model: "location",
-				key: id
+				key: "id"
 			}
 		},
 		comment_id: {

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Location, Comment, Like, Rating } = require("../../models");
+const { User, Location, Comment, Like, Rating } = require("../../../models");
 // const withAuth = require('../../utils/auth');
 
 // get all users

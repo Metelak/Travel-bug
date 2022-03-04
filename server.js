@@ -28,7 +28,7 @@ app.use(routes);
 
 //handlebars
 
-const hb = exphbs.create({});
+const hbs = exphbs.create({});
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
