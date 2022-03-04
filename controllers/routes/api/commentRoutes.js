@@ -1,12 +1,7 @@
 const router = require("express").Router();
 const { Comment } = require("../../../models");
-
-router.get("/", (req, res) => {
-	Comment.findAll()
-		.then((dbCommentData) => res.json(dbCommentData))
 // const sequelize = require('../../config/connection');
-const withAuth = require('../../../utils/auth');
-
+const withAuth = require("../../../utils/auth");
 
 //GET all comments
 router.get("/", (req, res) => {
@@ -25,10 +20,11 @@ router.get("/", (req, res) => {
 			}
 			res.json(dbCommentData);
 		})
-  .catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-  }
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
+});
 
 router.put("/:id", withAuth, (req, res) => {
 	//update a comment by its 'id' value
