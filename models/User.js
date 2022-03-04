@@ -33,27 +33,6 @@ User.init(
 			validate: {
 				len: [4]
 			}
-		},
-		location_id: {
-			type: DataTypes.INTEGER,
-			references: {
-				model: "location",
-				key: id
-			}
-		},
-		comment_id: {
-			type: DataTypes.INTEGER,
-			references: {
-				model: "comment",
-				key: "id"
-			}
-		},
-		likes_id: {
-			type: DataTypes.INTEGER,
-			references: {
-				model: "like",
-				key: "id"
-			}
 		}
 	},
 	{
