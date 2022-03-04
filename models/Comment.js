@@ -25,7 +25,7 @@ Comment.init(
 				model: "user",
 				key: "id"
 			},
-			onDelete: 'SET NULL'
+			onDelete: "SET NULL"
 		},
 		location_id: {
 			type: DataTypes.INTEGER,
@@ -33,7 +33,7 @@ Comment.init(
 				model: "location",
 				key: "id"
 			},
-			onDelete: 'SET NULL'
+			onDelete: "SET NULL"
 		}
 	},
 	{
