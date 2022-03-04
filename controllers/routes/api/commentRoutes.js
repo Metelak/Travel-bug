@@ -4,11 +4,31 @@ const { Comment } = require("../../../models");
 router.get("/", (req, res) => {
 	Comment.findAll()
 		.then((dbCommentData) => res.json(dbCommentData))
-		.catch((err) => {
-			console.log(err);
-			res.status(500).json(err);
-		});
-});
+// const sequelize = require('../../config/connection');
+const withAuth = require('../../../utils/auth');
+
+
+//GET all comments
+router.get("/", (req, res) => {
+	// find all comments
+	//including associated Users
+	Comment.findAll({
+		include: {
+			model: User,
+			attributes: ["id", "username", "email", "", ""]
+		}
+	})
+		.then((dbCommentData) => {
+			if (!dbCommentData) {
+				res.status(404).json({ message: "Cannot find comments" });
+				return;
+			}
+			res.json(dbCommentData);
+		})
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  }
 
 router.put("/:id", withAuth, (req, res) => {
 	//update a comment by its 'id' value
@@ -66,5 +86,4 @@ router.delete("/:id", (req, res) => {
 			});
 	}
 });
-
 module.exports = router;
