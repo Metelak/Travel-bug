@@ -24,11 +24,11 @@ Location.belongsTo(User, {
 });
 
 User.hasMany(Comment, {
-	foreignKey: "comment_id"
+	foreignKey: "user_id"
 });
 
 Comment.belongsTo(User, {
-	foreignKey: "comment_id"
+	foreignKey: "user_id"
 });
 
 // Like associations
