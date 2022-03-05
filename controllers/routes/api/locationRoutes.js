@@ -87,4 +87,18 @@ router.put("/:id", (req, res) => {
 			res.status(500).json(err);
 		});
 });
+
+router.delete("/:id", (req, res) => {
+	Location.destroy({
+		where: {
+			id: req.params.id
+		}
+	})
+		.then((dbLoctaionData) => {
+			res.json(dbLoctaionData);
+		})
+		.catch((err) => {
+			res.status(500).json(err);
+		});
+});
 module.exports = router;
