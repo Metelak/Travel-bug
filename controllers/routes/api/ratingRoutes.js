@@ -50,6 +50,7 @@ router.get("/:id", (req, res) => {
 			if (!dbRatingData) {
 				res.status(404).json({ message: "No rating found with this id" });
 			}
+			res.json(dbRatingData);
 		})
 		.catch((err) => {
 			res.status(500).json(err);
