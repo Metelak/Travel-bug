@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Comment, User, Location, Rating } = require("../../../models");
+const { User, Location, Rating } = require("../../../models");
 
 router.get("/", (req, res) => {
 	Rating.findAll({
@@ -17,5 +17,41 @@ router.get("/", (req, res) => {
 				}
 			}
 		]
-	});
+	})
+		.then((dbRatingData) => {
+			res.json(dbRatingData);
+		})
+		.catch((err) => {
+			res.status(500).json(err);
+		});
+});
+
+router.get("/:id", (req, res) => {
+	Rating.findOne({
+		where: {
+			id: req.params.id
+		},
+		include: [
+			{
+				model: User,
+				attributes: ["id", "username", "email"]
+			},
+			{
+				model: Location,
+				attributes: ["id", "title", "text", "user_id"],
+				include: {
+					model: User,
+					attributes: ["username", "email"]
+				}
+			}
+		]
+	})
+		.then((dbRatingData) => {
+			if (!dbRatingData) {
+				res.status(404).json({ message: "No rating found with this id" });
+			}
+		})
+		.catch((err) => {
+			res.status(500).json(err);
+		});
 });
