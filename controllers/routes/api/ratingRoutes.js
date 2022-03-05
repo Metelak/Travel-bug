@@ -69,3 +69,26 @@ router.post("/:id", (req, res) => {
 			res.status(500).json(err);
 		});
 });
+
+// only the rating can be updated
+router.put("/:id", (req, res) => {
+	Rating.update(
+		{
+			rating: req.body.rating
+		},
+		{
+			where: {
+				id: req.params.id
+			}
+		}
+	)
+		.then((dbRatingData) => {
+			if (!dbRatingData) {
+				res.status(404).json({ message: "No rating found with this id" });
+			}
+			res.json(dbRatingData);
+		})
+		.catch((err) => {
+			res.status(500).json(err);
+		});
+});
