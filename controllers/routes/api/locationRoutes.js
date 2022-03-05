@@ -10,11 +10,19 @@ router.get("/", (req, res) => {
 			},
 			{
 				model: Rating,
-				attributes: ["id", "rating", "user_id"]
+				attributes: ["id", "rating", "user_id"],
+				include: {
+					model: User,
+					attributes: ["username", "email"]
+				}
 			},
 			{
 				model: Comment,
-				attributes: ["id", "comment_text", "user_id"]
+				attributes: ["id", "comment_text", "user_id"],
+				include: {
+					model: User,
+					attributes: ["username", "email"]
+				}
 			}
 		]
 	})
@@ -38,11 +46,19 @@ router.get("/:id", (req, res) => {
 			},
 			{
 				model: Rating,
-				attributes: ["id", "rating", "user_id"]
+				attributes: ["id", "rating", "user_id"],
+				include: {
+					model: User,
+					attributes: ["username", "email"]
+				}
 			},
 			{
 				model: Comment,
-				attributes: ["id", "comment_text", "user_id"]
+				attributes: ["id", "comment_text", "user_id"],
+				include: {
+					model: User,
+					attributes: ["username", "email"]
+				}
 			}
 		]
 	})
