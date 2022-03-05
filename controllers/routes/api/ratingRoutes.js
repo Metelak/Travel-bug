@@ -92,3 +92,20 @@ router.put("/:id", (req, res) => {
 			res.status(500).json(err);
 		});
 });
+
+router.delete("/:id", (req, res) => {
+	Rating.destroy({
+		where: {
+			id: req.params.id
+		}
+	})
+		.then((dbRatingData) => {
+			if (!dbRatingData) {
+				res.status(404).json({ message: "No rating found with this id" });
+			}
+			res.json(dbRatingData);
+		})
+		.catch((err) => {
+			res.status(500).json(err);
+		});
+});
