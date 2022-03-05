@@ -56,4 +56,35 @@ router.get("/:id", (req, res) => {
 			res.status(500).json(err);
 		});
 });
+
+router.post("/", (req, res) => {
+	Location.create({
+		title: req.body.title,
+		text: req.body.text,
+		user_id: req.body.user_id
+	})
+		.then((dbLoctaionData) => {
+			res.json(dbLoctaionData);
+		})
+		.catch((err) => {
+			res.status(500).json(err);
+		});
+});
+
+router.put("/:id", (req, res) => {
+	Location.update(req.body, {
+		where: {
+			id: req.params.id
+		}
+	})
+		.then((dbLoctaionData) => {
+			if (!dbLoctaionData) {
+				res.status(404).json({ message: "No location found with this id" });
+			}
+			res.json(dbLoctaionData);
+		})
+		.catch((err) => {
+			res.status(500).json(err);
+		});
+});
 module.exports = router;
