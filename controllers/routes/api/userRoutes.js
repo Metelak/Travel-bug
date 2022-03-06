@@ -159,4 +159,29 @@ router.delete("/:id", (req, res) => {
 		});
 });
 
+// Get the user's likes
+router.get("/like", (req, res) => {
+	Like.findAll({
+		// include: [
+		// 	{
+		// 		model: User,
+		// 		attributes: ["id", "username", "email"]
+		// 	},
+		// 	{
+		// 		model: Location,
+		// 		attributes: ["id", "title", "text"],
+		// 		include: {
+		// 			model: User,
+		// 			attributes: ["username", "email"]
+		// 		}
+		// 	}
+		// ]
+	})
+		.then((dbUserData) => res.json(dbUserData))
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
+});
+
 module.exports = router;
