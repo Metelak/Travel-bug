@@ -41,7 +41,7 @@ async function newuserFormHandler(event) {
 		});
 
 		if (response.ok) {
-			document.location.replace("/dashboard/");
+			document.location.replace("/travels");
 		} else {
 			alert(response.statusText);
 		}
