@@ -15,12 +15,11 @@ const getPicture = async (location) => {
 			let editedphoto = `${photoUrl}&w=500&h=300&fit=fillmax`;
 			return editedphoto;
 		} else {
-			// We could return another photo if there are no results... Let's try and find a placeholder and insert the url here
-			return;
+			return null;
 		}
 	} catch (err) {
 		console.log(err);
-		return;
+		return null;
 	}
 };
 

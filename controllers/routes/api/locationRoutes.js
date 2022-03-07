@@ -77,6 +77,7 @@ router.post("/", (req, res) => {
 	Location.create({
 		title: req.body.title,
 		text: req.body.text,
+		picture: req.body.picture,
 		user_id: req.body.user_id
 		// user_id: req.session.user_id
 	})
