@@ -25,6 +25,8 @@ const seedAll = async () => {
 
 		await seedLikes();
 		console.log("\n----- LIKES SYNCED -----\n");
+
+		process.exit();
 	} catch (err) {
 		console.log(err);
 	}
