@@ -1,26 +1,32 @@
 async function newFormHandler(event) {
 	event.preventDefault();
 
-	const title = document.querySelector("input[name='location-title']").value;
-	const text = document.querySelector(
-		"input[name='location-text']"
-	).value;
+	// get values from user input
+	const title = document
+		.querySelector("input[name='location-title']")
+		.value.trim();
+	const text = document
+		.querySelector("input[name='location-text']")
+		.value.trim();
 
-	const response = await fetch("/api/locations", {
-		method: "POST",
-		body: JSON.stringify({
-			title,
-			post_url
-		}),
-		headers: {
-			"Content-Type": "application/json"
+	if (title && text) {
+		// post request to api
+		const response = await fetch("/api/locations", {
+			method: "POST",
+			body: JSON.stringify({
+				title,
+				text
+			}),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+
+		if (response.ok) {
+			document.location.replace("/travels");
+		} else {
+			alert(response.statusText);
 		}
-	});
-
-	if (response.ok) {
-		document.location.replace("/travels");
-	} else {
-		alert(response.statusText);
 	}
 }
 
