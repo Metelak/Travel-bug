@@ -30,4 +30,4 @@ router.post("/", async (req, res) => {
 	res.json({ pictureUrl: picture });
 });
 
-module.exports = getPicture;
+module.exports = router;
