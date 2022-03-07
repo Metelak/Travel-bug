@@ -74,4 +74,21 @@ router.put("/:id", (req, res) => {
 		});
 });
 
+// delete like
+router.delete("/:id", (req, res) => {
+	Like.destroy({
+		where: {
+			id: req.params.id
+		}
+	})
+		.then((dbLikeData) => {
+			if (!dbLikeData) {
+				res.status(404).json({ message: "No user found with this id" });
+			}
+		})
+		.catch((err) => {
+			res.status(500).json(err);
+		});
+});
+
 module.exports = router;
