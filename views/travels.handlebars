@@ -1,5 +1,5 @@
 <section>
-  <h2>Create New Location!</h2>
+  <h2>Create New Travel Location</h2>
 
   <form class="new-location-form">
     <div>
@@ -21,7 +21,7 @@
     {{#each locations as |location|}}
     <li>
       {{> location-info location}}
-      <a href="/dashboard/edit/{{post.id}}" class="edit-location">Edit Location</a>
+      <a href="/travels/edit/{{post.id}}" class="edit-location">Edit Location</a>
     </li>
     {{/each}}
   </ol>

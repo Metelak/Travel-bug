@@ -1,4 +1,5 @@
 const router = require("express").Router();
+// const sequelize = require("../config/connection");
 const { Location, User, Comment, Rating } = require("../../models");
 
 router.get("/", (req, res) => {
@@ -10,11 +11,7 @@ router.get("/", (req, res) => {
 			},
 			{
 				model: Rating,
-				attributes: [
-					"id",
-					"rating",
-					"user_id",
-				],
+				attributes: ["id", "rating", "user_id"],
 				include: {
 					model: User,
 					attributes: ["username", "email"]
@@ -31,7 +28,14 @@ router.get("/", (req, res) => {
 		]
 	})
 		.then((dbLocationData) => {
-			const locations = dbLocationData.map(location => location.get({ plain: true}));
+			const locations = dbLocationData.map((location) =>
+				location.get({ plain: true })
+			);
+			// .then(dbLocationData => {
+			// 	// serialize data before passing to template
+			// 	const locations = dbLocationData.map(location => location.get({ plain: true }));
+			// 	res.render('travels', { posts, loggedIn: true });
+			//   })
 
 			res.render("travels", {
 				locations
@@ -72,9 +76,9 @@ router.get("/edit/:id", (req, res) => {
 	})
 		.then((dbLoctaionData) => {
 			if (dbLoctaionData) {
-				const location =dbLoctaionData.get({ plain: true});
+				const location = dbLoctaionData.get({ plain: true });
 
-				res.render("edit-location",{
+				res.render("edit-location", {
 					location
 				});
 			} else {
@@ -85,6 +89,5 @@ router.get("/edit/:id", (req, res) => {
 			res.status(500).json(err);
 		});
 });
-
 
 module.exports = router;

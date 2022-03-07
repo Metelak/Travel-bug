@@ -78,6 +78,7 @@ router.post("/", (req, res) => {
 		title: req.body.title,
 		text: req.body.text,
 		user_id: req.body.user_id
+		// user_id: req.session.user_id
 	})
 		.then((dbLoctaionData) => {
 			res.json(dbLoctaionData);
