@@ -18,9 +18,10 @@ Location.init(
 			allowNull: false
 		},
 		picture: {
-			type: DataTypes.VARCHAR,
+			type: DataTypes.STRING,
 			allowNull: false,
-			defaultValue: ""
+			defaultValue:
+				"http://backpackingworldwide.com/wp-content/uploads/2016/04/Travel-Night-globe.png"
 		},
 		text: {
 			type: DataTypes.TEXT,

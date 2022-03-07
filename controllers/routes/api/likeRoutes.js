@@ -15,7 +15,7 @@ router.get("/:id", (req, res) => {
 			},
 			{
 				model: Location,
-				attributes: ["id", "title", "text"],
+				attributes: ["id", "title", "picture", "text"],
 				include: [
 					{
 						model: User,

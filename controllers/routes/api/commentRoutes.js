@@ -15,7 +15,11 @@ router.get("/", (req, res) => {
 			},
 			{
 				model: Location,
-				attributes: ["id", "title", "text", "user_id"]
+				attributes: ["id", "title", "picture", "text"],
+				include: {
+					model: User,
+					attributes: ["id", "username", "email"]
+				}
 			}
 		]
 	})
@@ -44,13 +48,13 @@ router.get("/:id", (req, res) => {
 			},
 			{
 				model: Location,
-				attributes: ["id", "title", "text", "user_id"]
+				attributes: ["id", "title", "picture", "text", "user_id"]
 			}
 		]
 	})
 		.then((dbUserData) => {
 			if (!dbUserData) {
-				res.status(404).json({ message: "No user found with this id" });
+				res.status(404).json({ message: "No comment found with this id" });
 				return;
 			}
 			res.json(dbUserData);
