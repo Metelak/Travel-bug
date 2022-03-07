@@ -1,5 +1,3 @@
-const getPicture = require("../../utils/location-pictures");
-
 async function newFormHandler(event) {
 	event.preventDefault();
 
@@ -10,25 +8,25 @@ async function newFormHandler(event) {
 	const text = document
 		.querySelector("input[name='location-text']")
 		.value.trim();
-	const picture = await getPicture(title);
 
-	// post request to api
-	const response = await fetch("/api/locations", {
-		method: "POST",
-		body: JSON.stringify({
-			title,
-			text,
-			picture
-		}),
-		headers: {
-			"Content-Type": "application/json"
+	if (title && text) {
+		// post request to api
+		const response = await fetch("/api/locations", {
+			method: "POST",
+			body: JSON.stringify({
+				title,
+				text
+			}),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+
+		if (response.ok) {
+			document.location.replace("/travels");
+		} else {
+			alert(response.statusText);
 		}
-	});
-
-	if (response.ok) {
-		document.location.replace("/travels");
-	} else {
-		alert(response.statusText);
 	}
 }
 
