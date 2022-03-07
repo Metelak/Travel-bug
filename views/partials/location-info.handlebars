@@ -4,10 +4,10 @@
     <a href="{{location}}" target="_blank">{{title}}</a>
     <span>({{location}})</span>
   </div>
-  {{!-- <div class="meta">
-    {{!-- {{rating}} {{"stars" rating}} by {{user.username}} on {{format_date created_at}}
-    | --}}
-    {{!-- <a href="/location/{{id}}">{{comments.length}}
-      {{"comment" comments.length}}</a>
-  </div> --}} --}}
+  <div class="meta">
+    {{rating}} {{format_plural "stars"}} by {{user.username}} on {{format_date created_at}}
+    |
+    <a href="/location/{{id}}">{{comments.length}}
+      {{format_plural "comment" comments.length}}</a>
+  </div>
 </div>
