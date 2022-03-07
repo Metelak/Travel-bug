@@ -3,16 +3,21 @@ const getPicture = require("../../utils/location-pictures");
 async function newFormHandler(event) {
 	event.preventDefault();
 
-	let title = document
+	const title = document
 		.querySelector("input[name='location-title']")
 		.value.trim();
-	let text = document.querySelector("input[name='location-text']").value.trim();
+	const text = document
+		.querySelector("input[name='location-text']")
+		.value.trim();
+
+	const locationPicture = await getPicture(title);
 
 	const response = await fetch("/api/locations", {
 		method: "POST",
 		body: JSON.stringify({
 			title,
-			text
+			text,
+			locationPicture
 		}),
 		headers: {
 			"Content-Type": "application/json"
