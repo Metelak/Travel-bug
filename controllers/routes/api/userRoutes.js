@@ -13,6 +13,41 @@ router.get("/", (req, res) => {
 			res.status(500).json(err);
 		});
 });
+
+// Get the user's likes by user_id
+router.get("/like/:id", (req, res) => {
+	Like.findAll({
+		where: {
+			user_id: req.params.id
+		},
+		include: [
+			{
+				model: User,
+				attributes: ["id", "username", "email"]
+			},
+			{
+				model: Location,
+				attributes: ["id", "title", "text"],
+				include: [
+					{
+						model: User,
+						attributes: ["username", "email"]
+					},
+					{
+						model: Rating,
+						attributes: ["id", "rating", "user_id", "location_id"]
+					}
+				]
+			}
+		]
+	})
+		.then((dbUserData) => res.json(dbUserData))
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
+});
+
 // get single user
 router.get("/:id", (req, res) => {
 	User.findOne({
@@ -23,27 +58,15 @@ router.get("/:id", (req, res) => {
 		include: [
 			{
 				model: Location,
-				attributes: ["id", "title", "picture", "text", "created_at"]
+				attributes: ["id", "title", "text"]
 			},
 			{
 				model: Comment,
-				attributes: ["id", "comment_text", "created_at"],
+				attributes: ["id", "comment_text"],
 				include: {
 					model: Location,
 					attributes: ["title"]
 				}
-			},
-			{
-				model: Location,
-				attributes: ["title"],
-				through: Rating,
-				as: "rated_locations"
-			},
-			{
-				model: Location,
-				attributes: ["title"],
-				through: Like,
-				as: "liked_locations"
 			}
 		]
 	})
@@ -81,43 +104,44 @@ router.post("/", (req, res) => {
 		});
 });
 
-router.post("/login", (req, res) => {
-	User.findOne({
-		where: {
-			email: req.body.email
-		}
-	}).then((dbUserData) => {
-		if (!dbUserData) {
-			res.status(400).json({ message: "No user with that email address!" });
-			return;
-		}
+// router.post("/login", (req, res) => {
+// 	User.findOne({
+// 		where: {
+// 			email: req.body.email
+// 		}
+// 	}).then((dbUserData) => {
+// 		if (!dbUserData) {
+// 			res.status(400).json({ message: "No user with that email address!" });
+// 			return;
+// 		}
 
-		const validPassword = dbUserData.checkPassword(req.body.password);
+// 		const validPassword = dbUserData.checkPassword(req.body.password);
 
-		if (!validPassword) {
-			res.status(400).json({ message: "Incorrect password!" });
-			return;
-		}
+// 		if (!validPassword) {
+// 			res.status(400).json({ message: "Incorrect password!" });
+// 			return;
+// 		}
 
-		req.session.save(() => {
-			req.session.user_id = dbUserData.id;
-			req.session.username = dbUserData.username;
-			req.session.loggedIn = true;
+// 		req.session.save(() => {
+// 			req.session.user_id = dbUserData.id;
+// 			req.session.username = dbUserData.username;
+// 			req.session.loggedIn = true;
 
-			res.json({ user: dbUserData, message: "You are now logged in!" });
-		});
-	});
-});
+// 			res.json({ user: dbUserData, message: "You are now logged in!" });
+// 		});
+// 	});
+// });
 
-router.post("/logout", (req, res) => {
-	if (req.session.loggedIn) {
-		req.session.destroy(() => {
-			res.status(204).end();
-		});
-	} else {
-		res.status(404).end();
-	}
-});
+// router.post("/logout", (req, res) => {
+// 	if (req.session.loggedIn) {
+// 		req.session.destroy(() => {
+// 			res.status(204).end();
+// 		});
+// 	} else {
+// 		res.status(404).end();
+// 	}
+// });
+
 // update single user
 router.put("/:id", (req, res) => {
 	// pass in req.body instead to only update what's passed through
@@ -153,31 +177,6 @@ router.delete("/:id", (req, res) => {
 			}
 			res.json(dbUserData);
 		})
-		.catch((err) => {
-			console.log(err);
-			res.status(500).json(err);
-		});
-});
-
-// Get the user's likes
-router.get("/like", (req, res) => {
-	Like.findAll({
-		// include: [
-		// 	{
-		// 		model: User,
-		// 		attributes: ["id", "username", "email"]
-		// 	},
-		// 	{
-		// 		model: Location,
-		// 		attributes: ["id", "title", "text"],
-		// 		include: {
-		// 			model: User,
-		// 			attributes: ["username", "email"]
-		// 		}
-		// 	}
-		// ]
-	})
-		.then((dbUserData) => res.json(dbUserData))
 		.catch((err) => {
 			console.log(err);
 			res.status(500).json(err);
