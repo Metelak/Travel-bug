@@ -17,11 +17,12 @@ Location.init(
 			type: DataTypes.STRING,
 			allowNull: false
 		},
-		// need to determine how we will add photos... either by user URL or API
-		// picture: {
-		//   type: DataTypes.VARCHAR,
-		//   allowNull: false,
-		// },
+		picture: {
+			type: DataTypes.STRING,
+			allowNull: false,
+			defaultValue:
+				"http://backpackingworldwide.com/wp-content/uploads/2016/04/Travel-Night-globe.png"
+		},
 		text: {
 			type: DataTypes.TEXT,
 			allowNull: false
