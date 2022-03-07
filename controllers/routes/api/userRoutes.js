@@ -1,45 +1,11 @@
 const router = require("express").Router();
-const { User, Location, Comment, Like, Rating } = require("../../../models");
+const { User, Location, Comment } = require("../../../models");
 // const withAuth = require('../../utils/auth');
 
 // get all users
 router.get("/", (req, res) => {
 	User.findAll({
 		attributes: { exclude: ["password"] }
-	})
-		.then((dbUserData) => res.json(dbUserData))
-		.catch((err) => {
-			console.log(err);
-			res.status(500).json(err);
-		});
-});
-
-// Get the user's likes by user_id
-router.get("/like/:id", (req, res) => {
-	Like.findAll({
-		where: {
-			user_id: req.params.id
-		},
-		include: [
-			{
-				model: User,
-				attributes: ["id", "username", "email"]
-			},
-			{
-				model: Location,
-				attributes: ["id", "title", "text"],
-				include: [
-					{
-						model: User,
-						attributes: ["username", "email"]
-					},
-					{
-						model: Rating,
-						attributes: ["id", "rating", "user_id", "location_id"]
-					}
-				]
-			}
-		]
 	})
 		.then((dbUserData) => res.json(dbUserData))
 		.catch((err) => {
