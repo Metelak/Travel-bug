@@ -22,7 +22,7 @@ const PORT = process.env.PORT || 3001;
 // app.use(session(sess));
 
 // import helpers functions, tell Handlebars.js about the helpers file
-const helpers = require('./utils/helpers');
+const helpers = require("./utils/helpers");
 // pass helpers to create
 const hbs = exphbs.create({ helpers });
 //handlebars
@@ -32,7 +32,7 @@ app.set("view engine", "handlebars");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // turn on path to public folder - stylesheets
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Use apiRoutes
 app.use(routes);
