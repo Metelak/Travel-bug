@@ -32,6 +32,34 @@ router.get("/", (req, res) => {
 		});
 });
 
+router.get("/:id", (req, res) => {
+	Comment.findOne({
+		where: {
+			id: req.params.id
+		},
+		include: [
+			{
+				model: User,
+				attributes: ["id", "username", "email"]
+			},
+			{
+				model: Location,
+				attributes: ["id", "title", "text", "user_id"]
+			}
+		]
+	})
+		.then((dbUserData) => {
+			if (!dbUserData) {
+				res.status(404).json({ message: "No user found with this id" });
+				return;
+			}
+			res.json(dbUserData);
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
+});
 router.put("/:id", withAuth, (req, res) => {
 	//update a comment by its 'id' value
 	Comment.update(req.body, {
