@@ -31,6 +31,11 @@ router.get("/", (req, res) => {
 			const locations = dbLocationData.map((location) =>
 				location.get({ plain: true })
 			);
+			// .then(dbLocationData => {
+			// 	// serialize data before passing to template
+			// 	const locations = dbLocationData.map(location => location.get({ plain: true }));
+			// 	res.render('travels', { posts, loggedIn: true });
+			//   })
 
 			res.render("travels", {
 				locations
