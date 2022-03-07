@@ -1,1 +1,13 @@
  {{!-- pull in api picture to location --}}
+ <article class="location">
+  <div class="title">
+    <a href="{{location}}" target="_blank">{{title}}</a>
+    <span>({{format plural location}})</span>
+  </div>
+  <div class="meta">
+    {{rating}} {{format_plural "point" rating}} by {{user.username}} on {{format_date created_at}}
+    |
+    <a href="/location/{{id}}">{{comments.length}}
+      {{format_plural "comment" comments.length}}</a>
+  </div>
+</article>

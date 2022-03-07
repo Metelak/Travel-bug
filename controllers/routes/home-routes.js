@@ -37,10 +37,6 @@ router.get("/", (req, res) => {
 			res.render("homepage", {
 				locations
 			});
-			// .then(dbLocationData => {
-			// 	// pass a single post object into the homepage template
-			// 	res.render('homepage', dbLocationData[0].get({ plain: true}));
-			//   })
 		})
 		.catch((err) => {
 			res.status(500).json(err);
