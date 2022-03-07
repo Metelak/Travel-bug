@@ -1,0 +1,26 @@
+{{!-- render locations from location-info handlebar --}}
+{{> location-info location }}
+
+
+{{!-- conditionally render the comment form, if the user is logged in --}}
+{{#if loggedIn}}
+<form class="comment-form">
+  <div>
+    <textarea name="comment-body"></textarea>
+  </div>
+
+  <div>
+    <button type="submit">add comment</button>
+    <button type="button" class="rating-btn">rating</button>
+  </div>
+</form>
+{{/if}}
+
+{{!-- render comments from comments handlebar --}}
+{{> comments location.comments}}
+
+{{!-- conditionally render the <script> elements --}}
+{{#if loggedIn}}
+<script src="/javascript/comment.js"></script>
+<script src="/javascript/rate.js"></script>
+{{/if}}
