@@ -17,17 +17,22 @@
 	<body>
 		<div class="wrapper">
 			<header>
-				<h1>
-					<a href="/">Travel Bug</a>
-				</h1>
-				<nav>
-					{{#if loggedIn}}
-						<a href="/travels">My Travels</a>
-						<button id="logout" class="btn-no-style">logout</button>
-					{{else}}
-						<a href="/login">Login</a>
-					{{/if}}
-				</nav>
+				<div class="jumbotron jumbotron-fluid">
+					<div class="container">
+						<h1 class="display-4">
+							<a href="/">Travel Bug</a>
+						</h1>
+						<nav>
+							{{#if loggedIn}}
+								<button class="btn btn-success" href="/travels">My Travels</button>
+								<button id="logout" class="btn btn-primary">logout</button>
+							{{else}}
+								<button class="btn btn-info" href="/login">Login</button>
+							{{/if}}
+						</nav>
+					</div>
+				</div>
+
 			</header>
 			<main>
 				{{{body}}}
