@@ -33,14 +33,20 @@ Comment.belongsTo(User, {
 
 // Like associations
 
-User.belongsToMany(Location, {
-	through: Like,
-	foreignKey: "likes_id"
+User.hasMany(Like, {
+	foreignKey: "user_id"
 });
 
-Location.belongsToMany(User, {
-	through: Like,
-	foreignKey: "likes_id"
+Like.belongsTo(User, {
+	foreignKey: "user_id"
+});
+
+Location.hasMany(Like, {
+	foreignKey: "location_id"
+});
+
+Like.belongsTo(Location, {
+	foreignKey: "location_id"
 });
 
 // Location associations
