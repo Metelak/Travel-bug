@@ -1,0 +1,31 @@
+<section>
+  <h2>Create New Location!</h2>
+
+  <form class="new-location-form">
+    <div>
+      <label for="location-title">Title</label>
+      <input type="text" id="location-title" name="location-title" />
+    </div>
+    <div>
+      <label for="location-text">Information</label>
+      <input type="text" id="location-text" name="location-text" />
+    </div>
+    <button type="submit" class="btn">Create</button>
+  </form>
+</section>
+{{!-- template for users to see their locations --}}
+{{#if locations.length}}
+<section>
+  <h2>Your Locations</h2>
+  <ol>
+    {{#each locations as |location|}}
+    <li>
+      {{> location-info location}}
+      <a href="/dashboard/edit/{{post.id}}" class="edit-location">Edit Location</a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
+{{!-- connecting create new location form --}}
+<script src="/javascript/add-location.js"></script>
