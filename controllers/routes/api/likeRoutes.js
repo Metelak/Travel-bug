@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const { Location, User, Rating } = require("../../../models");
+const { Location, User, Rating, Like } = require("../../../models");
 
 // Get the user's likes by user_id
-router.get("/likes/:id", (req, res) => {
+router.get("/:id", (req, res) => {
 	Like.findAll({
 		// find likes by user_id
 		where: {
@@ -49,6 +49,24 @@ router.post("/", (req, res) => {
 		location_id: req.body.location_id
 	})
 		.then((dbLikeData) => {
+			res.json(dbLikeData);
+		})
+		.catch((err) => {
+			res.status(500).json(err);
+		});
+});
+
+// edit like
+router.put("/:id", (req, res) => {
+	Like.update(req.body, {
+		where: {
+			id: req.params.id
+		}
+	})
+		.then((dbLikeData) => {
+			if (!dbLikeData) {
+				res.status(404).json({ message: "No user found with this id" });
+			}
 			res.json(dbLikeData);
 		})
 		.catch((err) => {
