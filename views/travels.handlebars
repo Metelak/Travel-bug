@@ -1,31 +1,34 @@
-<section>
-  <h2>Create New Travel Location</h2>
-
-  <form class="new-location-form">
-    <div>
-      <label for="location-title">Title</label>
-      <input type="text" id="location-title" name="location-title" />
-    </div>
-    <div>
-      <label for="location-text">Information</label>
-      <input type="text" id="location-text" name="location-text" />
-    </div>
-    <button type="submit" class="btn">Create</button>
-  </form>
-</section>
+<div class="container">
+  <div class="row">
+    <section class="col-sm-6">
+      <form class="new-location-form">
+      <h2 class="mb-3">Create New Travel Location</h2>
+      <div>
+        <label for="location-title" class="form-label">Location/Title</label>
+        <input type="text" class="form-control" id="location-title" name="location-title" placeholder="enter title here" />
+      </div>
+      <div class="mb-3">
+        <label for="location-text" class="form-label">Information</label>
+        <input type="text" class="form-control" id="location-text" name="location-text" placeholder="describe your travel adventures at this location"/>
+      </div>
+      <button type="submit" class="btn btn-info">Create</button>
+      </form>
+    </section>
 {{!-- template for users to see their locations --}}
-{{#if locations.length}}
-<section>
-  <h2>Your Locations</h2>
-  <ol>
-    {{#each locations as |location|}}
-    <li>
-      {{> location-info location}}
-      <a href="/travels/edit/{{post.id}}" class="edit-location">Edit Location</a>
-    </li>
-    {{/each}}
-  </ol>
-</section>
-{{/if}}
+    {{#if locations.length}}
+    <section class="col-sm-6">
+      <h2>Your Locations</h2>
+      <ul>
+        {{#each locations as |location|}}
+        <li>
+          {{> location-info location}}
+          <a href="/travels/edit/{{post.id}}" class="edit-location">Edit Location</a>
+        </li>
+        {{/each}}
+      </ul>
+    </section>
+    {{/if}}
+  </div>
+</div>
 {{!-- connecting create new location form --}}
 <script src="/javascript/add-location.js"></script>

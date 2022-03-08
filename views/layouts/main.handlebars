@@ -16,10 +16,8 @@
 
 	<body>
 		<div class="wrapper">
-			<header>
-				<div class="jumbotron jumbotron-fluid">
-					<div class="container">
-						{{!-- <img src="/assets/images/banner-pic.png" class="img-fluid" alt="Responsive image"> --}}
+			<header class="py-4 mb-3">
+					<div class="flex-row justify-space-between align-center container-fluid mx-auto">
 						<h1 class="display-4">
 							<a class="main-title text-light font-weight-bold" href="/">Travel Bug</a>
 						</h1>
@@ -28,12 +26,10 @@
 								<a href="/travels" class="" >My Travels</a>
 								<a href="/logout" id="logout" class="">logout</a>
 							{{else}}
-								<a href="/login" class="text-light font-weight-bold">Login</a>
+								<a href="/login" class="text-success font-weight-bold">Login</a>
 							{{/if}}
 						</nav>
 					</div>
-				</div>
-
 			</header>
 			<main>
 				{{{body}}}

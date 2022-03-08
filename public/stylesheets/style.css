@@ -4,22 +4,23 @@ header {
     background-color:rgb(139, 215, 243) ;
 	background-size: cover;
 	background-position: center;
-}
-/* .jumbotron {
-	background-image: url("/assets/images/banner-pic.png");
-    background-color:rgb(139, 215, 243) ;
-	background-size: cover;
-	background-position: center;
-} */
-
-.main-title {
-    text-decoration: none;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-header a {
+.main-title {
     text-decoration: none;
+}
+header nav {
     justify-content: right;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+/* homepage */
+.location-list {
+    text-decoration: none;
 }
 
 /* login form */
