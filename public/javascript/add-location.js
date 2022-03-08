@@ -1,3 +1,7 @@
+$("#star-rating").raty({
+	path: "img"
+});
+
 async function newFormHandler(event) {
 	event.preventDefault();
 
