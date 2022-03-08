@@ -19,8 +19,11 @@ nav a {
 }
 
 /* homepage */
-.location-list {
+/* .location-list {
     text-decoration: none;
-}
+} */
 
+ul {
+    list-style-type: none;
+}
 /* login form */
