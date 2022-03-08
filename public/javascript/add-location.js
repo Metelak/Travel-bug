@@ -6,7 +6,7 @@ async function newFormHandler(event) {
 		.querySelector("input[name='location-title']")
 		.value.trim();
 	const text = document
-		.querySelector("input[name='location-text']")
+		.querySelector("textarea[name='location-text']")
 		.value.trim();
 
 	if (title && text) {
