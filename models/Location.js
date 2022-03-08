@@ -38,7 +38,7 @@ Location.init(
 	},
 	{
 		sequelize,
-		timestamps: false,
+		timestamps: true,
 		freezeTableName: true,
 		underscored: true,
 		modelName: "location"
