@@ -8,7 +8,7 @@
       <input name="location-title" type="text" value="{{location.title}}" />
     </div>
     <div>
-      {{location.rating}} {{format_plural "stars" post.rating}} by you on {{format_date location.created_at}}
+      {{location.rating}} {{format_plural "stars" location.rating}} by you on {{format_date location.created_at}}
       |
       <a href="/location/{{location.id}}">{{locations.comments.length}} {{format_plural "comment" location.comments.length}}</a>
     </div>
@@ -26,5 +26,9 @@
     <button type="submit">Add Comment</button>
   </div>
 </form>
-{{!-- render comment posts from comments handlebar --}}
+{{!-- render comment locations from comments handlebar --}}
 {{> comments location.comments}}
+
+<script src="/javascript/edit-location.js"></script>
+<script src="/javascript/delete-location.js"></script>
+<script src="/javascript/comment.js"></script>
