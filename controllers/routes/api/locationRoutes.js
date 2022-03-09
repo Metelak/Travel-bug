@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Location, User, Comment, Rating } = require("../../../models");
+const withAuth = require("../../../utils/auth");
 const getPicture = require("../../../utils/location-pictures");
 
 router.get("/", (req, res) => {
@@ -74,7 +75,7 @@ router.get("/:id", (req, res) => {
 		});
 });
 
-router.post("/", async (req, res) => {
+router.post("/",withAuth, async (req, res) => {
 	const findPicture = await getPicture(req.body.title);
 	if (findPicture) {
 		Location.create({
@@ -105,7 +106,7 @@ router.post("/", async (req, res) => {
 	}
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", withAuth, (req, res) => {
 	Location.update(req.body, {
 		where: {
 			id: req.params.id
@@ -122,7 +123,7 @@ router.put("/:id", (req, res) => {
 		});
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth, (req, res) => {
 	Location.destroy({
 		where: {
 			id: req.params.id
