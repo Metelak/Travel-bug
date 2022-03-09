@@ -1,26 +1,37 @@
 {{!-- render locations from location-info handlebar --}}
-{{> location-info location }}
+<div class="container">
+  <div class="row flex-wrap">
+    <div class="col-6">
+      {{> location-info location }}
+    </div>
 
 
-{{!-- conditionally render the comment form, if the user is logged in --}}
-{{#if loggedIn}}
-<form class="comment-form">
-  <div>
-    <textarea name="comment-body"></textarea>
+    {{!-- conditionally render the comment form, if the user is logged in --}}
+    <div class="col-6">
+      {{#if loggedIn}}
+      <form class="comment-form my-3">
+        <h3>Comment Here</h3>
+        <div class="mb-3">
+          <textarea name="comment-body" class="form-control"
+            placeholder="comment on this location post here"></textarea>
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn-info">Add Comment</button>
+          <button type="button" class="rating-btn btn btn-warning">Rating</button>
+        </div>
+      </form>
+      {{/if}}
+
+      {{!-- render comments from comments handlebar --}}
+      {{> comments location.comments}}
+
+      {{!-- conditionally render the
+      <script> elements--}}
+        {{#if loggedIn}}
+        <script src="/javascript/comment.js"></script>
+      <script src="/javascript/rate.js"></script>
+      {{/if}}
+    </div>
   </div>
-
-  <div>
-    <button type="submit">add comment</button>
-    <button type="button" class="rating-btn">rating</button>
-  </div>
-</form>
-{{/if}}
-
-{{!-- render comments from comments handlebar --}}
-{{> comments location.comments}}
-
-{{!-- conditionally render the <script> elements --}}
-{{#if loggedIn}}
-<script src="/javascript/comment.js"></script>
-<script src="/javascript/rate.js"></script>
-{{/if}}
+</div>
