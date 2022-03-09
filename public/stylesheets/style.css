@@ -1,8 +1,6 @@
 /* main page */
 header {
-    /* background-image: url("/assets/images/banner-pic.png"); */
-    /* background-color:rgb(139, 215, 243) ; */
-    background-image: linear-gradient(to right, rgb(10, 91, 145) , rgb(255, 255, 255));
+    background-image: linear-gradient(to right, rgb(10, 91, 145) , rgb(122, 214, 122));
 	background-size: cover;
 	background-position: center;
     border-bottom: 1px solid #ccc;
@@ -10,12 +8,13 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0 1%;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .main-title {
     text-decoration: none;
+    font-family: 'Sansita Swashed', cursive;
 }
+
 header nav {
     justify-content: right;
 }
