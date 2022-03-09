@@ -7,13 +7,14 @@
 <form class="comment-form">
   <div>
     <textarea name="comment-body"></textarea>
-  </div>
-
-  <div>
     <button type="submit">add comment</button>
-    <button type="button" class="rating-btn">rating</button>
   </div>
 </form>
+  <form class="rating-form">
+    <label for="star-rating">My Rating</label>
+    <div id="star-rating"></div>
+    <button type="submit" id="">Submit</button>
+  </form>
 {{/if}}
 
 {{!-- render comments from comments handlebar --}}
