@@ -60,7 +60,7 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
 	Rating.create({
 		rating: req.body.rating,
-		user_id: req.body.user_id,
+		user_id: req.session.user_id,
 		location_id: req.body.location_id
 	})
 		.then((dbRatingData) => {
