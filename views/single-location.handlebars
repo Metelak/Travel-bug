@@ -1,33 +1,44 @@
 {{!-- render locations from location-info handlebar --}}
-{{> location-info location }}
+<div class="container">
+  <div class="row flex-wrap">
+    <div class="col-6">
+      {{> location-info location }}
+    </div>
 
 
-{{!-- conditionally render the comment form, if the user is logged in --}}
-{{#if loggedIn}}
-<form class="comment-form">
-  <div>
-    <textarea name="comment-body"></textarea>
-    <button type="submit">add comment</button>
+ {{!-- conditionally render the comment form, if the user is logged in --}} 
+    <div class="col-6">
+      {{#if loggedIn}}
+      <form class="comment-form my-3">
+        <h4>Comment Here</h4>
+        <div class="mb-3">
+          <textarea name="comment-body" class="form-control mb-3"
+            placeholder="comment on this location post here"></textarea>
+          <button type="submit" class="btn btn-info">Add Comment</button>
+        </div>
+      </form>
+      <form class="rating-form my-3">
+        <h4 for="star-rating">My Rating</h4>
+        <div id="star-rating" class="my-3"></div>
+        <button type="submit" id="" class="btn btn-info">Submit</button>
+      </form>
+      {{/if}}
+
+      {{!-- render comments from comments handlebar --}}
+      {{> comments location.comments}}
+
+      {{!-- conditionally render the
+      <script> elements--}}
+        {{#if loggedIn}}
+        {{!--JQuery script--}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      {{!-- Raty.js JQuery add-on --}}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/raty/3.1.1/jquery.raty.min.js"></script>
+      {{!-- public scripts --}}
+      <script src="/javascript/comment.js"></script>
+      <script src="/javascript/rate.js"></script>
+      <script></script>
+      {{/if}}
   </div>
-</form>
-  <form class="rating-form">
-    <label for="star-rating">My Rating</label>
-    <div id="star-rating"></div>
-    <button type="submit" id="">Submit</button>
-  </form>
-{{/if}}
-
-{{!-- render comments from comments handlebar --}}
-{{> comments location.comments}}
-
-{{!-- conditionally render the <script> elements --}}
-{{#if loggedIn}}
-{{!-- JQuery script --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-{{!-- Raty.js JQuery add-on --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raty/3.1.1/jquery.raty.min.js"></script>
-{{!-- public scripts --}}
-<script src="/javascript/comment.js"></script>
-<script src="/javascript/rate.js"></script>
-<script></script>
-{{/if}}
+</div>
+</div>
