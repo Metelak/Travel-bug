@@ -91,6 +91,7 @@ router.post("/", withAuth, (req, res) => {
 			comment_text: req.body.comment_text,
 			user_id: req.session.user_id,
 			location_id: req.body.location_id
+			//created_at: Date.now()
 		})
 			.then((dbCommentData) => res.json(dbCommentData))
 			.catch((err) => {

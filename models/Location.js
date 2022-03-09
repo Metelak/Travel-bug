@@ -3,7 +3,48 @@ const { Model, DataTypes } = require("sequelize");
 //import our database connection from config.js
 const sequelize = require("../config/connection");
 
-class Location extends Model {}
+class Location extends Model {
+	static rating(body, models) {
+		return models.Rating.create({
+			user_id: body.user_id,
+			location_id: body.location_id
+		}).then(() => {
+			return Location.findOne({
+				where: {
+					id: body.location_id
+				},
+				attributes: [
+					"id",
+					"post_url",
+					"title",
+					"created_at",
+					[
+						sequelize.literal(
+							"(SELECT COUNT(*) FROM rating WHERE location_id = rating.location_id)"
+						),
+						"location_count"
+					]
+				],
+				include: [
+					{
+						model: models.Comment,
+						attributes: [
+							"id",
+							"comment_text",
+							"location_id",
+							"user_id",
+							"created_at"
+						],
+						include: {
+							model: models.User,
+							attributes: ["username"]
+						}
+					}
+				]
+			});
+		});
+	}
+}
 
 Location.init(
 	{

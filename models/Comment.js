@@ -35,10 +35,13 @@ Comment.init(
 			},
 			onDelete: "SET NULL"
 		}
+		//created_at: {
+
+		//}
 	},
 	{
 		sequelize,
-		timestamps: false,
+		timestamps: true,
 		freezeTableName: true,
 		underscored: true,
 		modelName: "comment"

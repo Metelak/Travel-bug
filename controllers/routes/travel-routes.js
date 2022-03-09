@@ -4,10 +4,24 @@ const { Location, User, Comment, Rating } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 router.get("/", withAuth, (req, res) => {
+	console.log(req.session);
+	console.log("================");
 	Location.findAll({
 		where:{
 			user_id: req.session.user_id
 		},
+		attributes: [
+			"id",
+			"post_url",
+			"title",
+			"created_at",
+			[
+				sequelize.literal(
+					"(SELECT COUNT(*) FROM rating WHERE location_id = rating.location_id)"
+				),
+				"location_count"
+			]
+		],
 		include: [
 			{
 				model: User,
@@ -52,10 +66,19 @@ router.get("/", withAuth, (req, res) => {
 });
 
 router.get("/edit/:id", withAuth, (req, res) => {
-	Location.findOne({
-		where: {
-			id: req.params.id
-		},
+	Location.findByPk(req.params.id, {
+		attributes: [
+			"id",
+			"post_url",
+			"title",
+			"created_at",
+			[
+				sequelize.literal(
+					"(SELECT COUNT(*) FROM rating WHERE location_id = rating.location_id)"
+				),
+				"location_count"
+			]
+		],
 		include: [
 			{
 				model: User,
@@ -71,7 +94,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
 			},
 			{
 				model: Comment,
-				attributes: ["id", "comment_text", "user_id"],
+				attributes: ["id", "comment_text", "location_id", "user_id", "created_at"],
 				include: {
 					model: User,
 					attributes: ["username", "email"]

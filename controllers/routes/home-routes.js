@@ -3,7 +3,20 @@ const router = require("express").Router();
 const { Location, User, Comment, Rating } = require("../../models");
 
 router.get("/", (req, res) => {
+	console.log("=========================");
 	Location.findAll({
+		attributes: [
+			"id",
+			"post_url",
+			"title",
+			"created_at",
+			[
+				sequelize.literal(
+					"(SELECT COUNT(*) FROM rating WHERE location_id = rating.location_id)"
+				),
+				"location_count"
+			]
+		],
 		include: [
 			{
 				model: User,
@@ -11,11 +24,7 @@ router.get("/", (req, res) => {
 			},
 			{
 				model: Rating,
-				attributes: [
-					"id",
-					"rating",
-					"user_id",
-				],
+				attributes: ["id", "rating", "user_id"],
 				include: {
 					model: User,
 					attributes: ["username", "email"]
@@ -23,7 +32,7 @@ router.get("/", (req, res) => {
 			},
 			{
 				model: Comment,
-				attributes: ["id", "comment_text", "user_id"],
+				attributes: ["id", "comment_text", "location_id", "user_id", "created_at"],
 				include: {
 					model: User,
 					attributes: ["username", "email"]
@@ -32,7 +41,9 @@ router.get("/", (req, res) => {
 		]
 	})
 		.then((dbLocationData) => {
-			const locations = dbLocationData.map(location => location.get({ plain: true}));
+			const locations = dbLocationData.map((location) =>
+				location.get({ plain: true })
+			);
 
 			res.render("homepage", {
 				locations,
@@ -49,6 +60,18 @@ router.get("/location/:id", (req, res) => {
 		where: {
 			id: req.params.id
 		},
+		attributes: [
+			"id",
+			"post_url",
+			"title",
+			"created_at",
+			[
+				sequelize.literal(
+					"(SELECT COUNT(*) FROM rating WHERE location_id = rating.location_id)"
+				),
+				"location_count"
+			]
+		],
 		include: [
 			{
 				model: User,
@@ -64,7 +87,7 @@ router.get("/location/:id", (req, res) => {
 			},
 			{
 				model: Comment,
-				attributes: ["id", "comment_text", "user_id"],
+				attributes: ["id", "comment_text", "location_id", "user_id", "created_at"],
 				include: {
 					model: User,
 					attributes: ["username", "email"]
@@ -78,7 +101,7 @@ router.get("/location/:id", (req, res) => {
 				return;
 			}
 
-			const location = dbLoctaionData.get({ plain: true});
+			const location = dbLoctaionData.get({ plain: true });
 
 			res.render("single-location", {
 				location,
