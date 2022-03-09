@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <section class="col-sm-6">
+    <section class="col-sm-3">
       <form class="new-location-form">
       <h2 class="mb-3">Create New Travel Location</h2>
       <div>
@@ -20,16 +20,16 @@
     </section>
 {{!-- template for users to see their locations --}}
     {{#if locations.length}}
-    <section class="col-sm-6">
+    <section class="col">
       <h2>Your Locations</h2>
-      <ul>
+      <div>
         {{#each locations as |location|}}
-        <li>
+        <div>
           {{> location-info location}}
           <a href="/travels/edit/{{location.id}}" class="edit-location">Edit Location</a>
-        </li>
+        </div>
         {{/each}}
-      </ul>
+      </div>
     </section>
     {{/if}}
   </div>
