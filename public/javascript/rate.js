@@ -26,7 +26,7 @@ async function ratingHandler(event) {
 	const userRating = await checkUserRatings.json();
 
 	if (userRating.length >= 1) {
-		return alert("You have already left a rating on this location!");
+		return alert("You have already rated this location!");
 	}
 
 	if (rating) {
