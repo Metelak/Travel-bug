@@ -11,6 +11,10 @@
         <label for="location-text" class="form-label">Information</label>
         <textarea type="text" class="form-control" id="location-text" name="location-text" placeholder="describe your travel adventures at this location"></textarea>
       </div>
+      <div class="mb-3">
+        <label for="star-rating">Rating</label>
+        <div id="star-rating"></div>
+      </div>
       <button type="submit" class="btn btn-info">Create</button>
       </form>
     </section>
@@ -30,5 +34,9 @@
     {{/if}}
   </div>
 </div>
+{{!-- JQuery script --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{{!-- Raty.js JQuery add-on --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raty/3.1.1/jquery.raty.min.js"></script>
 {{!-- connecting create new location form --}}
 <script src="/javascript/add-location.js"></script>

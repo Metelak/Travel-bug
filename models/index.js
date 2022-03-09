@@ -61,7 +61,7 @@ Comment.belongsTo(Location, {
 
 // Rating associations
 
-Location.hasOne(Rating, {
+Location.hasMany(Rating, {
 	foreignKey: "location_id"
 });
 

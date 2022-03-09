@@ -57,7 +57,7 @@ router.get("/:id", (req, res) => {
 		});
 });
 
-router.post("/:id", (req, res) => {
+router.post("/", (req, res) => {
 	Rating.create({
 		rating: req.body.rating,
 		user_id: req.body.user_id,

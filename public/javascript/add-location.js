@@ -1,3 +1,35 @@
+var rating = null;
+
+$("#star-rating").raty({
+	path: "img",
+	click: (score) => {
+		rating = score;
+	}
+});
+
+// create a new rating in the db
+async function createRating(postData) {
+	let postId = postData.id;
+
+	const response = await fetch("/api/ratings", {
+		method: "POST",
+		body: JSON.stringify({
+			// user_id: session user id
+			location_id: postId,
+			rating: rating
+		}),
+		headers: {
+			"Content-Type": "application/json"
+		}
+	});
+
+	if (response.ok) {
+		document.location.replace("/travels");
+	} else {
+		alert(response.statusText);
+	}
+}
+
 async function newFormHandler(event) {
 	event.preventDefault();
 
@@ -9,7 +41,7 @@ async function newFormHandler(event) {
 		.querySelector("textarea[name='location-text']")
 		.value.trim();
 
-	if (title && text) {
+	if (title && text && rating) {
 		// post request to api
 		const response = await fetch("/api/locations", {
 			method: "POST",
@@ -23,7 +55,8 @@ async function newFormHandler(event) {
 		});
 
 		if (response.ok) {
-			document.location.replace("/travels");
+			const responseObj = await response.json();
+			createRating(responseObj);
 		} else {
 			alert(response.statusText);
 		}
