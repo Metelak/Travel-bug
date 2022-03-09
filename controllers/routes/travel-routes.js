@@ -43,7 +43,7 @@ router.get("/", withAuth, (req, res) => {
 
 			res.render("travels", {
 				locations,
-				loggedIn: req.session.loggedIn
+				//loggedIn: true
 			});
 		})
 		.catch((err) => {
@@ -85,7 +85,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
 
 				res.render("edit-location", {
 					location,
-					loggedIn: req.session.loggedIn
+					//loggedIn: true
 				});
 			} else {
 				res.status(404).end();
