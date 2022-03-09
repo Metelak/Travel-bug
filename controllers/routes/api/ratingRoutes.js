@@ -26,25 +26,6 @@ router.get("/", (req, res) => {
 		});
 });
 
-router.post("/check-user-ratings", (req, res) => {
-	Rating.findAll({
-		where: [
-			{
-				user_id: req.session.user_id
-			},
-			{
-				location_id: req.body.location_id
-			}
-		]
-	})
-		.then((dbRatingData) => {
-			res.json(dbRatingData);
-		})
-		.catch((err) => {
-			res.status(500).json(err);
-		});
-});
-
 router.get("/:id", (req, res) => {
 	Rating.findOne({
 		where: {
@@ -81,6 +62,25 @@ router.post("/", (req, res) => {
 		rating: req.body.rating,
 		user_id: req.session.user_id,
 		location_id: req.body.location_id
+	})
+		.then((dbRatingData) => {
+			res.json(dbRatingData);
+		})
+		.catch((err) => {
+			res.status(500).json(err);
+		});
+});
+
+router.post("/check-user-ratings", (req, res) => {
+	Rating.findAll({
+		where: [
+			{
+				user_id: req.session.user_id
+			},
+			{
+				location_id: req.body.location_id
+			}
+		]
 	})
 		.then((dbRatingData) => {
 			res.json(dbRatingData);
