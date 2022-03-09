@@ -10,7 +10,8 @@
           {{location}}{{text}}
         </div>
         <div class="meta card-body mb-3">
-          {{rating}} {{format_plural "stars"}} by {{user.username}} on {{format_date created_at}}
+          {{!-- {{rating}} {{format_plural "stars"}} by  --}}
+          {{user.username}} on {{format_date created_at}}
           |
           <a href="/location/{{id}}">{{comments.length}}
             {{format_plural "comment" comments.length}}</a>

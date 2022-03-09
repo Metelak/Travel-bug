@@ -5,6 +5,11 @@ header {
     background-image: linear-gradient(to right, rgb(10, 91, 145) , rgb(255, 255, 255));
 	background-size: cover;
 	background-position: center;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1%;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -27,4 +32,11 @@ nav a {
 ul {
     list-style-type: none;
 }
-/* login form */
+
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }

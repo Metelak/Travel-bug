@@ -17,18 +17,16 @@
 	<body>
 		<div class="wrapper">
 			<header class="py-4 mb-3">
-					<div class="flex-row justify-space-between align-center container-fluid mx-auto">
+					<div class="flex-row justify-space-between container-fluid ">
 						<h1 class="display-4">
 							<a class="main-title text-light font-weight-bold" href="/">Travel Bug</a>
 						</h1>
 						<nav>
 							{{#if loggedIn}}
-								<a href="/travels" class="" >My Travels</a>
-
-								<button href="/logout" id="logout" class="">logout</button>
-
+							<a href="/travels" class="" >My Travels</a>
+							<button href="/logout" id="logout" class="btn-no-style">logout</button>
 							{{else}}
-								<a href="/login" class="text-light font-weight-bold">Login</a>
+							<a href="/login" class="text-light font-weight-bold">Login</a>
 							{{/if}}
 						</nav>
 					</div>
