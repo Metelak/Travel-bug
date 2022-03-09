@@ -14,7 +14,6 @@ async function createRating(postData) {
 	const response = await fetch("/api/ratings", {
 		method: "POST",
 		body: JSON.stringify({
-			// user_id: session user id
 			location_id: postId,
 			rating: rating
 		}),

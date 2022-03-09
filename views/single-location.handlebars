@@ -7,13 +7,14 @@
 <form class="comment-form">
   <div>
     <textarea name="comment-body"></textarea>
-  </div>
-
-  <div>
     <button type="submit">add comment</button>
-    <button type="button" class="rating-btn">rating</button>
   </div>
 </form>
+  <form class="rating-form">
+    <label for="star-rating">My Rating</label>
+    <div id="star-rating"></div>
+    <button type="submit" id="">Submit</button>
+  </form>
 {{/if}}
 
 {{!-- render comments from comments handlebar --}}
@@ -21,6 +22,12 @@
 
 {{!-- conditionally render the <script> elements --}}
 {{#if loggedIn}}
+{{!-- JQuery script --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{{!-- Raty.js JQuery add-on --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raty/3.1.1/jquery.raty.min.js"></script>
+{{!-- public scripts --}}
 <script src="/javascript/comment.js"></script>
 <script src="/javascript/rate.js"></script>
+<script></script>
 {{/if}}
