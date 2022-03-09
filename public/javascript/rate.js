@@ -14,8 +14,23 @@ async function ratingHandler(event) {
 	// define variables
 	let location_id = location.href.split("/").slice(-1).toString();
 
+	const checkUserRatings = await fetch("/api/ratings/check-user-ratings", {
+		method: "POST",
+		body: JSON.stringify({
+			location_id
+		}),
+		headers: {
+			"Content-Type": "application/json"
+		}
+	});
+	const userRating = await checkUserRatings.json();
+
+	if (userRating.length >= 1) {
+		return alert("You have already left a rating on this location!");
+	}
+
 	if (rating) {
-		const response = await fetch("/api/ratings/", {
+		const ratingResponse = await fetch("/api/ratings/", {
 			method: "POST",
 			body: JSON.stringify({
 				rating,
@@ -26,10 +41,10 @@ async function ratingHandler(event) {
 			}
 		});
 
-		if (response.ok) {
+		if (ratingResponse.ok) {
 			document.location.replace(`/location/${location_id}`);
 		} else {
-			alert(response.statusText);
+			alert(ratingResponse.statusText);
 		}
 	}
 }
