@@ -75,15 +75,14 @@ router.get("/:id", (req, res) => {
 		});
 });
 
-router.post("/",withAuth, async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
 	const findPicture = await getPicture(req.body.title);
 	if (findPicture) {
 		Location.create({
 			title: req.body.title,
 			text: req.body.text,
 			picture: findPicture,
-			user_id: req.body.user_id
-			// user_id: req.session.user_id
+			user_id: req.session.user_id
 		})
 			.then((dbLoctaionData) => {
 				res.json(dbLoctaionData);
@@ -95,7 +94,7 @@ router.post("/",withAuth, async (req, res) => {
 		Location.create({
 			title: req.body.title,
 			text: req.body.text,
-			user_id: req.body.user_id
+			user_id: req.session.user_id
 		})
 			.then((dbLoctaionData) => {
 				res.json(dbLoctaionData);
