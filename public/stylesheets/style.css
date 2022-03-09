@@ -1,7 +1,8 @@
 /* main page */
 header {
-    background-image: url("/assets/images/banner-pic.png");
-    background-color:rgb(139, 215, 243) ;
+    /* background-image: url("/assets/images/banner-pic.png"); */
+    /* background-color:rgb(139, 215, 243) ; */
+    background-image: linear-gradient(to right, rgb(10, 91, 145) , rgb(255, 255, 255));
 	background-size: cover;
 	background-position: center;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

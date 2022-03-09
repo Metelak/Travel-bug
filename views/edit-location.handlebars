@@ -1,33 +1,45 @@
-<article>
-  <a href="/travels"> &larr; Back to travels</a>
-  <h2>
-    Edit Location
-  </h2>
-  <form class="edit-location-form">
-    <div>
-      <input name="location-title" type="text" value="{{location.title}}" />
-    </div>
-    <div>
-      {{location.rating}} {{format_plural "stars" location.rating}} by you on {{format_date location.created_at}}
-      |
-      <a href="/location/{{location.id}}">{{locations.comments.length}} {{format_plural "comment" location.comments.length}}</a>
-    </div>
-    <button type="submit">Update Location</button>
-    <button type="button" class="delete-location-btn">Delete Location</button>
-  </form>
-</article>
- {{!-- adding new comments and listing current comments underneath --}}
-<form class="comment-form">
-  <div>
-    <textarea name="comment-body"></textarea>
-  </div>
+<div class="container">
+  <div class="row">
+    <section class="col-sm-6">
+      <a href="/travels"> &larr; Back to travels</a>
+      <form class="edit-location-form">
+        <h2 class="mb-3">Edit Location</h2>
+        <div class="mb-3">
+          <input name="location-title" class="form-control" type="text" value="{{location.title}}" />
+        </div>
+        <div class="mb-3">
+          <label for="location-text" class="form-label">Information</label>
+          <textarea type="text" class="form-control" id="location-text" name="location-text"
+            placeholder="update your travel adventures for this location here"></textarea>
+        </div>
+        {{!-- <div>
+          {{location.rating}} {{format_plural "stars" location.rating}} by you on {{format_date location.created_at}}
+          |
+          <a href="/location/{{location.id}}">{{locations.comments.length}} {{format_plural "comment"
+            location.comments.length}}</a>
+        </div> --}}
+        <button type="submit" class="btn btn-info">Update Location</button>
+        <button type="button" class="delete-location-btn btn btn-danger">Delete Location</button>
+      </form>
+    </section>
 
-  <div>
-    <button type="submit">Add Comment</button>
+    <section class="col-sm-6">
+      {{!-- adding new comments and listing current comments underneath --}}
+      <form class="comment-form">
+        <h2 class="mb-3">Add New Comment</h2>
+        <div class="mb-3">
+          <textarea type="text" class="form-control" name="comment-body"></textarea>
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn-info">Add Comment</button>
+        </div>
+      </form>
+      {{!-- render comment locations from comments handlebar --}}
+      {{> comments location.comments}}
+    </section>
   </div>
-</form>
-{{!-- render comment locations from comments handlebar --}}
-{{> comments location.comments}}
+</div>
 
 <script src="/javascript/edit-location.js"></script>
 <script src="/javascript/delete-location.js"></script>
