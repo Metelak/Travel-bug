@@ -5,7 +5,6 @@ const routes = require("./controllers/routes");
 const sequelize = require("./config/connection");
 const path = require("path");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-const helpers = require("./utils/helpers");
 require("dotenv").config();
 
 const app = express();
@@ -23,6 +22,7 @@ const sess = {
 
 app.use(session(sess));
 
+const helpers = require("./utils/helpers");
 // import helpers functions, tell Handlebars.js about the helpers file
 const hbs = exphbs.create({ helpers });
 
