@@ -1,12 +1,14 @@
 {{!-- pull in api picture to location --}}
 {{!-- <div class="container-fluid">
   <div class="row justify-content-start">
-    <div class="location col"> --}}
-      <div class="card" style="width: 30rem;">
+    <div class="location col-4"> --}}
+      <div class="card" style="width: 18rem;">
         <img src="..." class="card-img-top" alt="...">
         <div class="title card-body mb-3">
           <a class="card-title" href="{{location}}" target="_blank">{{title}}</a>
-          <span>({{location}})</span>
+        </div>
+        <div class="location-text mb-3">
+          {{location}}{{text}}
         </div>
         <div class="meta mb-3">
           {{rating}} {{format_plural "stars"}} by {{user.username}} on {{format_date created_at}}
