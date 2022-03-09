@@ -1,5 +1,10 @@
+var rating = null;
+
 $("#star-rating").raty({
-	path: "img"
+	path: "img",
+	click: (score) => {
+		rating = score;
+	}
 });
 
 async function newFormHandler(event) {
@@ -13,7 +18,7 @@ async function newFormHandler(event) {
 		.querySelector("textarea[name='location-text']")
 		.value.trim();
 
-	if (title && text) {
+	if (title && text && rating) {
 		// post request to api
 		const response = await fetch("/api/locations", {
 			method: "POST",
