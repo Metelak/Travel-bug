@@ -77,24 +77,33 @@ router.get("/:id", (req, res) => {
 
 router.post("/",withAuth, async (req, res) => {
 	const findPicture = await getPicture(req.body.title);
-	let picture = null;
 	if (findPicture) {
-		picture = findPicture;
-	}
-
-	Location.create({
-		title: req.body.title,
-		text: req.body.text,
-		picture: picture,
-		user_id: req.body.user_id
-		// user_id: req.session.user_id
-	})
-		.then((dbLoctaionData) => {
-			res.json(dbLoctaionData);
+		Location.create({
+			title: req.body.title,
+			text: req.body.text,
+			picture: findPicture,
+			user_id: req.body.user_id
+			// user_id: req.session.user_id
 		})
-		.catch((err) => {
-			res.status(500).json(err);
-		});
+			.then((dbLoctaionData) => {
+				res.json(dbLoctaionData);
+			})
+			.catch((err) => {
+				res.status(500).json(err);
+			});
+	} else {
+		Location.create({
+			title: req.body.title,
+			text: req.body.text,
+			user_id: req.body.user_id
+		})
+			.then((dbLoctaionData) => {
+				res.json(dbLoctaionData);
+			})
+			.catch((err) => {
+				res.status(500).json(err);
+			});
+	}
 });
 
 router.put("/:id", withAuth, (req, res) => {

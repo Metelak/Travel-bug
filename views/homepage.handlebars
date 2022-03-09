@@ -1,7 +1,11 @@
-<ul class="location-list">
-  {{#each locations as |location|}}
-  <li>
-    {{> location-info location }}
-  </li>
-  {{/each}}
-</ul>
+<div class="container-fluid">
+  <div class="location-list d-flex flex-row flex-wrap">
+    {{!-- <div class="col-sm-4"> --}}
+      {{#each locations as |location|}}
+      <div>
+        {{> location-info location }}
+      </div>
+      {{/each}}
+    </div>
+  {{!-- </div> --}}
+</div>
