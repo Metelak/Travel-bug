@@ -1,9 +1,13 @@
 const router = require("express").Router();
 // const sequelize = require("../config/connection");
 const { Location, User, Comment, Rating } = require("../../models");
+const withAuth = require("../../utils/auth");
 
-router.get("/", (req, res) => {
+router.get("/", withAuth, (req, res) => {
 	Location.findAll({
+		where:{
+			user_id: req.session.user_id
+		},
 		include: [
 			{
 				model: User,
@@ -38,7 +42,8 @@ router.get("/", (req, res) => {
 			//   })
 
 			res.render("travels", {
-				locations
+				locations,
+				loggedIn: req.session.loggedIn
 			});
 		})
 		.catch((err) => {
@@ -46,7 +51,7 @@ router.get("/", (req, res) => {
 		});
 });
 
-router.get("/edit/:id", (req, res) => {
+router.get("/edit/:id", withAuth, (req, res) => {
 	Location.findOne({
 		where: {
 			id: req.params.id
@@ -79,7 +84,8 @@ router.get("/edit/:id", (req, res) => {
 				const location = dbLoctaionData.get({ plain: true });
 
 				res.render("edit-location", {
-					location
+					location,
+					loggedIn: req.session.loggedIn
 				});
 			} else {
 				res.status(404).end();

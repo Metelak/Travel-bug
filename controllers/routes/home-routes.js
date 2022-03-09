@@ -35,7 +35,8 @@ router.get("/", (req, res) => {
 			const locations = dbLocationData.map(location => location.get({ plain: true}));
 
 			res.render("homepage", {
-				locations
+				locations,
+				loggedIn: req.session.loggedIn
 			});
 		})
 		.catch((err) => {
@@ -80,7 +81,8 @@ router.get("/location/:id", (req, res) => {
 			const location = dbLoctaionData.get({ plain: true});
 
 			res.render("single-location", {
-				location
+				location,
+				loggedIn: req.session.loggedIn
 			});
 		})
 		.catch((err) => {
@@ -89,6 +91,10 @@ router.get("/location/:id", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
+	if (req.session.loggedIn) {
+		res.redirect("/");
+		return;
+	}
 	res.render("login");
 });
 
