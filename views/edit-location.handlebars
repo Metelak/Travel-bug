@@ -3,21 +3,24 @@
     <section class="col-sm-6">
       <a href="/travels"> &larr; Back to travels</a>
       <form class="edit-location-form">
-        <h2 class="mb-3">Edit Location</h2>
+        <h2 class="mb-3">
+          Edit Location
+          </h2>
         <div class="mb-3">
           <input name="location-title" class="form-control" type="text" value="{{location.title}}" />
+          <span>({{format_date created_at}})</span>
         </div>
         <div class="mb-3">
           <label for="location-text" class="form-label">Information</label>
           <textarea type="text" class="form-control" id="location-text" name="location-text"
             placeholder="update your travel adventures for this location here"></textarea>
         </div>
-        {{!-- <div>
+        <div>
           {{location.rating}} {{format_plural "stars" location.rating}} by you on {{format_date location.created_at}}
           |
           <a href="/location/{{location.id}}">{{locations.comments.length}} {{format_plural "comment"
             location.comments.length}}</a>
-        </div> --}}
+        </div>
         <button type="submit" class="btn btn-info">Update Location</button>
         <button type="button" class="delete-location-btn btn btn-danger">Delete Location</button>
       </form>
