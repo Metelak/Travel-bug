@@ -105,7 +105,11 @@ router.post("/", withAuth, async (req, res) => {
 	}
 });
 
-router.put("/:id", withAuth, (req, res) => {
+router.put("/:id", withAuth, async (req, res) => {
+	if (req.body.title) {
+		const newPic = await getPicture(title);
+		req.body.picture = newPic;
+	}
 	Location.update(req.body, {
 		where: {
 			id: req.params.id
