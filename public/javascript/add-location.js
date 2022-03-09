@@ -7,6 +7,29 @@ $("#star-rating").raty({
 	}
 });
 
+// create a new rating in the db
+async function createRating(postData) {
+	let postId = postData.id;
+
+	const response = await fetch("/api/ratings", {
+		method: "POST",
+		body: JSON.stringify({
+			// user_id: session user id
+			location_id: postId,
+			rating: rating
+		}),
+		headers: {
+			"Content-Type": "application/json"
+		}
+	});
+
+	if (response.ok) {
+		document.location.replace("/travels");
+	} else {
+		alert(response.statusText);
+	}
+}
+
 async function newFormHandler(event) {
 	event.preventDefault();
 
@@ -32,7 +55,8 @@ async function newFormHandler(event) {
 		});
 
 		if (response.ok) {
-			document.location.replace("/travels");
+			const responseObj = await response.json();
+			createRating(responseObj);
 		} else {
 			alert(response.statusText);
 		}
