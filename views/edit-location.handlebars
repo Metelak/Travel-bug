@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <section class="col-sm-6">
+      <a href="/travels"> &larr; Back to travels</a>
+      <form class="edit-location-form p-4">
+        <h2 class="mb-3">Edit Location</h2>
+        <div class="mb-3">
+          <input name="location-title" class="form-control" type="text" value="{{location.title}}" />
+        </div>
+        <div class="mb-3">
+          <label for="location-text" class="form-label">Information</label>
+          <textarea type="text" class="form-control" id="location-text" name="location-text"
+            placeholder="update your travel adventures for this location here"></textarea>
+        </div>
+        {{!-- <div>
+          {{location.rating}} {{format_plural "stars" location.rating}} by you on {{format_date location.created_at}}
+          |
+          <a href="/location/{{location.id}}">{{locations.comments.length}} {{format_plural "comment"
+            location.comments.length}}</a>
+        </div> --}}
+        <button type="submit" class="btn btn-info">Update Location</button>
+        <button type="button" class="delete-location-btn btn btn-danger">Delete Location</button>
+      </form>
+    </section>
+
+    <section class="col-sm-6 p-4">
+      {{!-- adding new comments and listing current comments underneath --}}
+      <form class="comment-form">
+        <h2 class="mb-3">Add New Comment</h2>
+        <div class="mb-3">
+          <textarea type="text" class="form-control" name="comment-body"></textarea>
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn-info">Add Comment</button>
+        </div>
+      </form>
+      {{!-- render comment locations from comments handlebar --}}
+      {{> comments location.comments}}
+    </section>
+  </div>
+</div>
+
+<div class="rating-form container p-4">
+  <h2 class="mb-3">Update Rating</h2>
+  <div id="star-rating" class="mb-3"></div>
+  <button id="rating-btn" class="btn btn-info mb-3">Submit</button>
+</div>
+{{!--JQuery script--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{{!-- Raty.js JQuery add-on --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raty/3.1.1/jquery.raty.min.js"></script>
+<script src="/javascript/edit-location.js"></script>
+<script src="/javascript/edit-rating.js"></script>
+<script src="/javascript/delete-location.js"></script>
+<script src="/javascript/comment.js"></script>

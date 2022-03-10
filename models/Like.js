@@ -3,9 +3,9 @@ const { Model, DataTypes } = require("sequelize");
 //import our database connection from config.js
 const sequelize = require("../config/connection");
 
-class Location extends Model {}
+class Like extends Model {}
 
-Location.init(
+Like.init(
 	{
 		id: {
 			type: DataTypes.INTEGER,
@@ -13,26 +13,19 @@ Location.init(
 			primaryKey: true,
 			autoIncrement: true
 		},
-		title: {
-			type: DataTypes.STRING,
-			allowNull: false
-		},
-		picture: {
-			type: DataTypes.STRING,
-			defaultValue:
-				"http://backpackingworldwide.com/wp-content/uploads/2016/04/Travel-Night-globe.png"
-		},
-		text: {
-			type: DataTypes.TEXT,
-			allowNull: false
-		},
 		user_id: {
 			type: DataTypes.INTEGER,
 			references: {
 				model: "user",
 				key: "id"
-			},
-			onDelete: "SET NULL"
+			}
+		},
+		location_id: {
+			type: DataTypes.INTEGER,
+			references: {
+				model: "location",
+				key: "id"
+			}
 		}
 	},
 	{
@@ -40,8 +33,8 @@ Location.init(
 		timestamps: true,
 		freezeTableName: true,
 		underscored: true,
-		modelName: "location"
+		modelName: "like"
 	}
 );
 
-module.exports = Location;
+module.exports = Like;

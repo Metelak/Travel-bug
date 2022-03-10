@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="d-flex flex-row flex-wrap justify-content-evenly p-4">
+    <div class="col-sm-4 p-6">
+      <form class="new-location-form">
+      <h2 class="mb-3">Create New Travel Location</h2>
+      <div>
+        <label for="location-title" class="form-label">Location/Title</label>
+        <input type="text" class="form-control" id="location-title" name="location-title" placeholder="enter title here" />
+      </div>
+      <div class="mb-3">
+        <label for="location-text" class="form-label">Information</label>
+        <textarea type="text" class="form-control" id="location-text" name="location-text" placeholder="describe your travel adventures at this location"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="star-rating">Rating</label>
+        <div id="star-rating"></div>
+      </div>
+      <button type="submit" class="btn btn-info">Create</button>
+      </form>
+    </div>
+{{!-- template for users to see their locations --}}
+    {{#if locations.length}}
+    <div class="col-sm-6">
+      <h2>Your Locations</h2>
+      <div>
+        {{#each locations as |location|}}
+        <div>
+          {{> location-info location}}
+          <a href="/travels/edit/{{location.id}}" class="edit-location">Edit Location</a>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+  </div>
+</div>
+{{!-- JQuery script --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{{!-- Raty.js JQuery add-on --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raty/3.1.1/jquery.raty.min.js"></script>
+{{!-- connecting create new location form --}}
+<script src="/javascript/add-location.js"></script>
+<script src="/javascript/like-location.js"></script>
