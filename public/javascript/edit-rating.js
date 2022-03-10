@@ -13,19 +13,17 @@ async function getCurrentRating() {
 	});
 	const userRatingObj = await userRating.json();
 	ratingId = userRatingObj[0].id;
-	$("#star-rating").data("score", userRatingObj[0].rating);
+
+	$("#star-rating").raty({
+		path: "/img",
+		score: userRatingObj[0].rating,
+		click: (points) => {
+			rating = points;
+		}
+	});
 }
 
-$("#star-rating").raty({
-	path: "/img",
-	click: (points) => {
-		rating = points;
-	}
-});
-
-async function ratingUpdateHandler(event) {
-	event.preventDefault();
-
+async function ratingUpdateHandler() {
 	if (rating) {
 		const response = await fetch(`/api/ratings/${ratingId}`, {
 			method: "PUT",
@@ -47,5 +45,5 @@ async function ratingUpdateHandler(event) {
 	}
 }
 
-$(".rating-form").on("sumbit", ratingUpdateHandler);
+$("#rating-btn").on("click", ratingUpdateHandler);
 $(document).ready(getCurrentRating());
