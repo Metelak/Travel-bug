@@ -10,9 +10,8 @@ $("#star-rating").raty({
 async function ratingHandler(event) {
 	event.preventDefault();
 
-	console.log(rating);
 	// define variables
-	let location_id = location.href.split("/").slice(-1).toString();
+	let location_id = window.location.href.split("/").slice(-1).toString();
 
 	const checkUserRatings = await fetch("/api/ratings/check-user-ratings", {
 		method: "POST",

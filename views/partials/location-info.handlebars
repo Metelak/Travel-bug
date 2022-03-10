@@ -1,20 +1,34 @@
-{{!-- pull in api picture to location --}}
-{{!-- <div class="container-fluid"> --}}
- 
-      <div class="location card m-3 col-4" style="width: 20rem; height: auto;">
-        <img src="{{picture}}" class="card-img-top img-fluid" style="height: 10rem;" alt="picture of location">
-        <div class="title card-body mb-3">
-          <a class="card-title" href="/location/{{id}}" target="_blank">{{title}}</a>
-        </div>
-        <div class="location-text card-body mb-3">
-          {{location}}{{text}}
-        </div>
-        <div class="meta card-body mb-3">
-          {{!-- {{rating}} {{format_plural "stars"}} by  --}}
-          {{user.username}} on {{format_date created_at}}
-          |
-          <a href="/location/{{id}}">{{comments.length}}
-            {{format_plural "comment" comments.length}}</a>
-        </div>
-      </div>
-    
+{{! pull in api picture to location }}
+{{! <div class="container-fluid"> }}
+
+<div class="location card m-3 col-4" style="width: 20rem; height: auto;">
+	<img
+		src="{{picture}}"
+		class="card-img-top img-fluid"
+		style="height: 10rem;"
+		alt="picture of location"
+	/>
+	<div class="title card-body mb-3">
+		<a class="card-title" href="/location/{{id}}" target="_blank">{{title}}</a>
+	</div>
+	<div class="location-text card-body mb-3">
+		{{location}}{{text}}
+	</div>
+	<div class="meta card-body mb-3">
+		{{!-- {{rating}} {{format_plural "stars"}} by  --}}
+		posted by
+		{{user.username}}
+		on
+		{{format_date createdAt}}<br>
+    {{#if ratings}}
+    {{#each ratings}}
+    | rated {{rating}} <img src="/img/star-on.png" style="height: 15px; width: 15px; margin-bottom: 4px;"> by {{user.username}} <br>
+    {{/each}}
+    {{else}}
+    no ratings
+    {{/if}}
+		|
+		<a href="/location/{{id}}">{{comments.length}}
+			{{format_plural "comment" comments.length}}</a>
+	</div>
+</div>
