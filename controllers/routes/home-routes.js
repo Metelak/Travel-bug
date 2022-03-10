@@ -1,5 +1,5 @@
 const router = require("express").Router();
-// const sequelize = require('../config/connection');
+const sequelize = require("../../config/connection");
 const { Location, User, Comment, Rating } = require("../../models");
 
 router.get("/", (req, res) => {
@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
 	Location.findAll({
 		attributes: [
 			"id",
-			"post_url",
+			//"photoUrl",
 			"title",
 			"created_at",
 			[
@@ -32,7 +32,13 @@ router.get("/", (req, res) => {
 			},
 			{
 				model: Comment,
-				attributes: ["id", "comment_text", "location_id", "user_id", "created_at"],
+				attributes: [
+					"id",
+					"comment_text",
+					"location_id",
+					"user_id",
+					"created_at"
+				],
 				include: {
 					model: User,
 					attributes: ["username", "email"]
@@ -62,7 +68,7 @@ router.get("/location/:id", (req, res) => {
 		},
 		attributes: [
 			"id",
-			"post_url",
+			//"photoUrl",
 			"title",
 			"created_at",
 			[
@@ -87,7 +93,13 @@ router.get("/location/:id", (req, res) => {
 			},
 			{
 				model: Comment,
-				attributes: ["id", "comment_text", "location_id", "user_id", "created_at"],
+				attributes: [
+					"id",
+					"comment_text",
+					"location_id",
+					"user_id",
+					"created_at"
+				],
 				include: {
 					model: User,
 					attributes: ["username", "email"]

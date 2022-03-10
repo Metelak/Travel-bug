@@ -1,5 +1,5 @@
 const router = require("express").Router();
-// const sequelize = require("../config/connection");
+const sequelize = require("../../config/connection");
 const { Location, User, Comment, Rating } = require("../../models");
 const withAuth = require("../../utils/auth");
 
@@ -12,7 +12,7 @@ router.get("/", withAuth, (req, res) => {
 		},
 		attributes: [
 			"id",
-			"post_url",
+			"photoUrl",
 			"title",
 			"created_at",
 			[
@@ -69,7 +69,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
 	Location.findByPk(req.params.id, {
 		attributes: [
 			"id",
-			"post_url",
+			"photoUrl",
 			"title",
 			"created_at",
 			[

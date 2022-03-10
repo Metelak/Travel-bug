@@ -2,8 +2,7 @@ async function commentFormHandler(event) {
 	event.preventDefault();
 
 	const comment_text = document
-		.querySelector("textarea[name='comment-body']")
-		.value.trim();
+		.querySelector("textarea[name='comment-body']").value.trim();
 	const location_id = window.location.toString().split("/")[
 		window.location.toString().split("/").length - 1
 	];

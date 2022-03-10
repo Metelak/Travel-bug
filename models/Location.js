@@ -15,7 +15,7 @@ class Location extends Model {
 				},
 				attributes: [
 					"id",
-					"post_url",
+					"photoUrl",
 					"title",
 					"created_at",
 					[
