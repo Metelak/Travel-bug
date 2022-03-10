@@ -5,14 +5,27 @@
 async function likeHandler(event) {
 	event.preventDefault();
 
-	const id = window.location.toString().split("/")[
-		window.location.toString().split("/").length - 1
-	];
+	const locationId = event.target.getAttribute("data-location");
 
-	const response = await fetch("/api/likes", {
-		method: "PUT",
+	const alreadyLiked = await fetch("/api/likes/already-liked", {
+		method: "POST",
 		body: JSON.stringify({
-			location_id: id
+			location_id: locationId
+		}),
+		headers: {
+			"Content-Type": "application/json"
+		}
+	});
+	const alreadyLikedObj = await alreadyLiked.json();
+	if (alreadyLikedObj.length >= 1) {
+		alert("You have already liked this location!");
+		return;
+	}
+
+	const response = await fetch("/api/likes/", {
+		method: "POST",
+		body: JSON.stringify({
+			location_id: locationId
 		}),
 		headers: {
 			"Content-Type": "application/json"
@@ -26,4 +39,4 @@ async function likeHandler(event) {
 	}
 }
 
-$(".like-btn").on("like", likeHandler);
+$(document).on("click", "#like-button", likeHandler);
