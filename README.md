@@ -1,4 +1,5 @@
 # **Travel-bug**
+* https://travelbug-project.herokuapp.com/ 
 
 ## Table of Contents
 
@@ -14,13 +15,13 @@
   ---
 
   ## **User-Story**
-  As a user, I want to be able to post about travel locations and provide comments, photos and ratings. As a user, I want to be able to look at other users posts and search travel locations by rating. 
+  As a user I want to be able to look at travel locations and see comments, photos and ratings to plan my next trip. 
 
   ## **Description**
-  To collab with teammates to develop a full-stack web application
+  To collab with teammates to develop a full-stack web application. Travel Bug is a webpage that hosts travel locations posted by users that allows individual users to browse for travel information and like locations to save to their personal login page. It also, lets the user create new location posts for other users to see in the homepage and lets them rate 1-5 stars on their trip/experience going to that location. 
 
   ## **Preview**
-
+![travelbug-preview](https://user-images.githubusercontent.com/94068596/157773143-4e26809c-d6e7-428f-9ae7-0de7cf5b188a.jpg)
   ## **Installation**
   * Download [Travel-bug repo](https://github.com/Metelak/Travel-bug) to local file
   * Open files in VS Code 
