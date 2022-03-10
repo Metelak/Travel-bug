@@ -1,37 +1,57 @@
 {{! pull in api picture to location }}
 {{! <div class="container-fluid"> }}
 <div class="card-deck">
-  <div class="location card m-3 col-sm-auto" style="width: 30rem; min-height: 45rem;">
-    <img
-      src="{{picture}}"
-      class="card-img-top img-responsive"
-      style="height: 20rem;"
-      alt="picture of location"
-    />
-    <div class="title card-body text-center">
-      <a class="card-title fs-4 fw-bold text-dark" href="/location/{{id}}" target="_blank">{{title}}</a>
-    </div>
-    <div class="location-text card-body mb-3">
-      {{location}}{{text}}
-    </div>
-    <div class="meta card-body">
-      Posted by:
-      {{user.username}}
-      on
-      {{format_date createdAt}}<br>
-      {{#if ratings}}
-      {{#each ratings}}
-      | rated: {{rating}} <img src="/img/star-on.png" style="height: 15px; width: 15px; margin-bottom: 4px;"> by {{user.username}} <br>
-      {{/each}}
-      {{else}}
-      no ratings
-      {{/if}}
-      |
-      <a href="/location/{{id}}">{{comments.length}}
-        {{format_plural "comment" comments.length}}</a>
-    </div>
-    <div class="like-btn card-body text-center">
-      <a href="/likes/{{location.id}}" class="btn btn-outline-success" type="like">Add to My Travels</a>
-    </div>
-  </div>
-</div> 
+	<div
+		class="location card m-3 col-sm-auto"
+		style="width: 30rem; min-height: 45rem;"
+	>
+		<img
+			src="{{picture}}"
+			class="card-img-top img-responsive"
+			style="height: 20rem;"
+			alt="picture of location"
+		/>
+		<div class="title card-body text-center">
+			<a
+				class="card-title fs-4 fw-bold text-dark"
+				href="/location/{{id}}"
+				target="_blank"
+			>{{title}}</a>
+		</div>
+		<div class="location-text card-body mb-3">
+			{{location}}{{text}}
+		</div>
+		<div class="meta card-body">
+			Posted by:
+			{{user.username}}
+			on
+			{{format_date createdAt}}<br />
+			{{#if ratings}}
+				{{#each ratings}}
+					| rated:
+					{{rating}}
+					<img
+						src="/img/star-on.png"
+						style="height: 15px; width: 15px; margin-bottom: 4px;"
+					/>
+					by
+					{{user.username}}
+					<br />
+				{{/each}}
+			{{else}}
+				no ratings
+			{{/if}}
+			|
+			<a href="/location/{{id}}">{{comments.length}}
+				{{format_plural "comment" comments.length}}</a>
+		</div>
+		<div class="like-btn-container card-body text-center">
+			<button
+				id="like-button"
+				data-location="{{id}}"
+				class="btn btn-outline-success"
+				type="like"
+			>Add to My Travels</button>
+		</div>
+	</div>
+</div>
