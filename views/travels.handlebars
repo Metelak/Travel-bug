@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="d-flex flex-row flex-wrap justify-content-around p-4">
+  <div class="d-flex flex-row flex-wrap justify-content-evenly p-4">
     <div class="col-sm-3">
       <form class="new-location-form">
       <h2 class="mb-3">Create New Travel Location</h2>
@@ -20,7 +20,7 @@
     </div>
 {{!-- template for users to see their locations --}}
     {{#if locations.length}}
-    <div class="col-auto">
+    <div class="col-sm-8">
       <h2>Your Locations</h2>
       <div>
         {{#each locations as |location|}}
