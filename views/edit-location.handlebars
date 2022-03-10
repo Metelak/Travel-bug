@@ -2,7 +2,7 @@
   <div class="row">
     <section class="col-sm-6">
       <a href="/travels"> &larr; Back to travels</a>
-      <form class="edit-location-form">
+      <form class="edit-location-form p-4">
         <h2 class="mb-3">Edit Location</h2>
         <div class="mb-3">
           <input name="location-title" class="form-control" type="text" value="{{location.title}}" />
@@ -23,7 +23,7 @@
       </form>
     </section>
 
-    <section class="col-sm-6">
+    <section class="col-sm-6 p-4">
       {{!-- adding new comments and listing current comments underneath --}}
       <form class="comment-form">
         <h2 class="mb-3">Add New Comment</h2>
@@ -41,10 +41,10 @@
   </div>
 </div>
 
-<div class="rating-form container">
+<div class="rating-form container p-4">
   <h2 class="mb-3">Update Rating</h2>
   <div id="star-rating" class="mb-3"></div>
-  <button id="rating-btn" class="btn btn-info">Submit</button>
+  <button id="rating-btn" class="btn btn-info mb-3">Submit</button>
 </div>
 {{!--JQuery script--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
