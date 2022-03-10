@@ -31,7 +31,9 @@
 		"express": "^4.17.3",
 		"express-handlebars": "^6.0.3",
 		"express-session": "^1.17.2",
+		"fetch": "^1.1.0",
 		"mysql2": "^2.3.3",
+		"node": "^17.5.0",
 		"node-fetch": "^2.6.7",
 		"sequelize": "^6.17.0"
 	}

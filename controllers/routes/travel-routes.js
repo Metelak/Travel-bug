@@ -69,7 +69,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
 	Location.findByPk(req.params.id, {
 		attributes: [
 			"id",
-			"photoUrl",
+			"pictures",
 			"title",
 			"created_at",
 			[

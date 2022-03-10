@@ -2,12 +2,13 @@ const router = require("express").Router();
 const sequelize = require("../../config/connection");
 const { Location, User, Comment, Rating } = require("../../models");
 
+
 router.get("/", (req, res) => {
 	console.log("=========================");
 	Location.findAll({
 		attributes: [
 			"id",
-			//"photoUrl",
+			"picture",
 			"title",
 			"created_at",
 			[
@@ -68,7 +69,7 @@ router.get("/location/:id", (req, res) => {
 		},
 		attributes: [
 			"id",
-			//"photoUrl",
+			"picture",
 			"title",
 			"created_at",
 			[
