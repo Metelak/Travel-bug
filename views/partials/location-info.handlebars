@@ -16,13 +16,13 @@
     </div>
     <div class="meta card-body mb-3">
       {{!-- {{rating}} {{format_plural "stars"}} by  --}}
-      posted by
+      posted by:
       {{user.username}}
       on
       {{format_date createdAt}}<br>
       {{#if ratings}}
       {{#each ratings}}
-      | rated {{rating}} <img src="/img/star-on.png" style="height: 15px; width: 15px; margin-bottom: 4px;"> by {{user.username}} <br>
+      | rated: {{rating}} <img src="/img/star-on.png" style="height: 15px; width: 15px; margin-bottom: 4px;"> by {{user.username}} <br>
       {{/each}}
       {{else}}
       no ratings
