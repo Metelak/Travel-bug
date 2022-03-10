@@ -92,7 +92,6 @@ router.post("/check-user-ratings", (req, res) => {
 
 // only the rating can be updated
 router.put("/:id", (req, res) => {
-	console.log("made it");
 	Rating.update(
 		{
 			rating: req.body.rating
