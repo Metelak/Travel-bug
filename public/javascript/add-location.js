@@ -1,7 +1,7 @@
 var rating = null;
 
 $("#star-rating").raty({
-	path: "img",
+	path: "/img",
 	click: (score) => {
 		rating = score;
 	}
