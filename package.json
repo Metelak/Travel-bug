@@ -4,7 +4,7 @@
 	"description": "* [User-Story](#user-story)\r   * [Description](#description)\r   * [Installation](#installation)\r   * [Usage](#usage)\r   * [Contributions](#contributions)\r   * [Tests](#tests)\r   * [License](#license)\r   * [Questions](#questions)",
 	"main": "server.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"test": "jest",
 		"start": "node server.js",
 		"seed": "node seeds/index.js"
 	},
@@ -31,6 +31,7 @@
 		"express": "^4.17.3",
 		"express-handlebars": "^6.0.3",
 		"express-session": "^1.17.2",
+		"jest": "^27.5.1",
 		"mysql2": "^2.3.3",
 		"node-fetch": "^2.6.7",
 		"sequelize": "^6.17.0"
