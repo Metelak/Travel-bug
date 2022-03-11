@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
 			},
 			{
 				model: Comment,
-				attributes: ["id", "comment_text", "user_id", "createdAt"],
+				attributes: ["id", "comment_text", "user_id"],
 				include: {
 					model: User,
 					attributes: ["username", "email"]
@@ -64,7 +64,7 @@ router.get("/location/:id", (req, res) => {
 			},
 			{
 				model: Comment,
-				attributes: ["id", "comment_text", "user_id", "createdAt"],
+				attributes: ["id", "comment_text", "user_id","createdAt"],
 				include: {
 					model: User,
 					attributes: ["username", "email"]

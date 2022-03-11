@@ -32,6 +32,20 @@
       </div>
     </div>
     {{/if}}
+    {{#if locations.length}}
+    <div class="col-sm-6">
+      <h2>Liked locations</h2>
+      <div>
+        {{#each locations as |location|}}
+        <div>
+          {{> likedlocation-info location}}
+          {{!--<a href="/travels/edit/{{location.id}}" class="edit-location">Edit Location</a> --}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+    
   </div>
 </div>
 {{!-- JQuery script --}}

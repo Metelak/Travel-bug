@@ -1,36 +1,6 @@
 const router = require("express").Router();
 const { Location, User, Rating, Like } = require("../../../models");
-
-router.get("/", (req, res) => {
-	Like.findAll({
-		include: [
-			{
-				model: User,
-				attributes: ["id", "username", "email"]
-			},
-			{
-				model: Location,
-				attributes: ["id", "title", "picture", "text"],
-				include: [
-					{
-						model: User,
-						attributes: ["username", "email"]
-					},
-					{
-						model: Rating,
-						attributes: ["id", "rating", "user_id", "location_id"]
-					}
-				]
-			}
-		]
-	})
-		.then((dbLikeData) => {
-			res.json(dbLikeData);
-		})
-		.catch((err) => {
-			res.status(500).json(err);
-		});
-});
+//const withAuth = require("../../../utils/auth");
 
 // Get the user's likes by user_id
 router.get("/:id", (req, res) => {
@@ -75,6 +45,7 @@ router.get("/:id", (req, res) => {
 // add user like
 router.post("/", (req, res) => {
 	Like.create({
+		// !replace this user_id with the user's session
 		user_id: req.session.user_id,
 		location_id: req.body.location_id
 	})
@@ -85,8 +56,7 @@ router.post("/", (req, res) => {
 			res.status(500).json(err);
 		});
 });
-
-router.post("/already-liked", (req, res) => {
+router.post("/check-user-likes", (req, res) => {
 	Like.findAll({
 		where: [
 			{
@@ -97,13 +67,23 @@ router.post("/already-liked", (req, res) => {
 			}
 		]
 	})
-		.then((dbLikeData) => {
-			res.json(dbLikeData);
+		.then((dbRatingData) => {
+			res.json(dbRatingData);
 		})
 		.catch((err) => {
 			res.status(500).json(err);
 		});
 });
+
+// router.put('/ulike', withAuth, (req, res) => {
+// 	// custom static method created in models/Location.js
+// 	Location.ulike({ ...req.body, user_id: req.session.user_id }, { Like, Comment, User })
+// 	  .then(updatedLikeData => res.json(updatedLikeData))
+// 	  .catch(err => {
+// 		console.log(err);
+// 		res.status(500).json(err);
+// 	  });
+//   });
 
 // edit like
 router.put("/:id", (req, res) => {
