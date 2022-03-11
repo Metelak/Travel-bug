@@ -1,11 +1,35 @@
 var rating = null;
 
-$("#star-rating").raty({
-	path: "/img",
-	click: (score) => {
-		rating = score;
+async function getCurrentRating() {
+	const userRating = await fetch("/api/ratings/check-user-ratings", {
+		method: "POST",
+		body: JSON.stringify({
+			location_id: window.location.href.split("/").slice(-1).toString()
+		}),
+		headers: {
+			"Content-Type": "application/json"
+		}
+	});
+
+	const userRatingObj = await userRating.json();
+
+	if (userRatingObj.length) {
+		$("#star-rating").raty({
+			path: "/img",
+			score: userRatingObj[0].rating,
+			click: (points) => {
+				rating = points;
+			}
+		});
+	} else {
+		$("#star-rating").raty({
+			path: "/img",
+			click: (points) => {
+				rating = points;
+			}
+		});
 	}
-});
+}
 
 async function ratingHandler(event) {
 	event.preventDefault();
@@ -49,3 +73,4 @@ async function ratingHandler(event) {
 }
 
 $(".rating-form").on("submit", ratingHandler);
+$(document).ready(getCurrentRating());
