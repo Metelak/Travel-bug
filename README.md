@@ -5,8 +5,10 @@
 
   * [User-Story](#user-story)
   * [Description](#description)
+  * [Preview](#preview)
   * [Installation](#installation)
   * [Usage](#usage)
+  * [Packages](#packages)
   * [Contributions](#contributions)
   * [Tests](#tests)
   * [License](#license)
