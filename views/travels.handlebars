@@ -1,6 +1,6 @@
 <div class="container-fluid">
-  <div class="d-flex flex-row flex-wrap justify-content-evenly p-4">
-    <div class="col-sm-4 p-6">
+  <div class="row justify-content-evenly p-4">
+    <div class="col-lg-4 p-6">
       <form class="new-location-form">
       <h2 class="mb-3">Create New Travel Location</h2>
       <div>
@@ -20,15 +20,17 @@
     </div>
 {{!-- template for users to see their locations --}}
     {{#if locations.length}}
-    <div class="col-sm-6">
+    <div class="col-lg-8">
       <h2>Your Locations</h2>
-      <div>
-        {{#each locations as |location|}}
-        <div>
-          {{> location-info location}}
-          <a href="/travels/edit/{{location.id}}" class="edit-location">Edit Location</a>
+      <div class="container-fluid">
+        <div class="row justify-content-even">
+          {{#each locations as |location|}}
+          <div>
+            {{> location-info location}}
+            <a href="/travels/edit/{{location.id}}" class="edit-location">Edit Location</a>
+          </div>
+          {{/each}}
         </div>
-        {{/each}}
       </div>
     </div>
     {{/if}}
