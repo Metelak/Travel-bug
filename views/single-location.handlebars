@@ -1,13 +1,16 @@
 {{!-- render locations from location-info handlebar --}}
-<div class="container">
-  <div class="row flex-wrap">
-    <div class="col-6">
-      {{> location-info location }}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-xl-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          {{> location-info location }}
+        </div>
+      </div>
     </div>
 
-
  {{!-- conditionally render the comment form, if the user is logged in --}} 
-    <div class="col-6">
+    <div class="col-12 col-xl-8">
       {{#if loggedIn}}
       <form class="comment-form my-3">
         <h4>Comment Here</h4>
@@ -40,5 +43,4 @@
       <script src="/javascript/like-location.js"></script>
       {{/if}}
   </div>
-</div>
 </div>
