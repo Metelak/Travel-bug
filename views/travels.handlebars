@@ -23,9 +23,9 @@
     <div class="col-lg-8">
       <h2>Your Locations</h2>
       <div class="container-fluid">
-        <div class="row justify-content-even">
+        <div class="row">
           {{#each locations as |location|}}
-          <div>
+          <div class="col-auto">
             {{> location-info location}}
             <a href="/travels/edit/{{location.id}}" class="edit-location">Edit Location</a>
           </div>
