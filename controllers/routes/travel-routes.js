@@ -1,11 +1,11 @@
 const router = require("express").Router();
 // const sequelize = require("../config/connection");
-const { Location, User, Comment, Rating } = require("../../models");
+const { Location, User, Comment, Rating, Like } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 router.get("/", withAuth, (req, res) => {
 	Location.findAll({
-		where:{
+		where: {
 			user_id: req.session.user_id
 		},
 		include: [
@@ -35,11 +35,6 @@ router.get("/", withAuth, (req, res) => {
 			const locations = dbLocationData.map((location) =>
 				location.get({ plain: true })
 			);
-			// .then(dbLocationData => {
-			// 	// serialize data before passing to template
-			// 	const locations = dbLocationData.map(location => location.get({ plain: true }));
-			// 	res.render('travels', { posts, loggedIn: true });
-			//   })
 
 			res.render("travels", {
 				locations,
@@ -49,6 +44,50 @@ router.get("/", withAuth, (req, res) => {
 		.catch((err) => {
 			res.status(500).json(err);
 		});
+});
+
+router.get("/liked-travels", async (req, res) => {
+	try {
+		const dbLikeData = await Like.findAll({
+			where: {
+				user_id: 1
+			},
+			include: {
+				model: Location,
+				attributes: ["id", "title", "picture", "text", "user_id"],
+				include: [
+					{
+						model: User,
+						attributes: ["id", "username", "email"]
+					},
+					{
+						model: Rating,
+						attributes: ["id", "rating", "user_id"],
+						include: {
+							model: User,
+							attributes: ["username", "email"]
+						}
+					},
+					{
+						model: Comment,
+						attributes: ["id", "comment_text", "user_id", "createdAt"],
+						include: {
+							model: User,
+							attributes: ["username", "email"]
+						}
+					}
+				]
+			}
+		}).map((el) => {
+			el.get({ plain: true });
+		});
+
+		console.log(dbLikeData);
+
+		res(dbLikeData);
+	} catch (err) {
+		res.status(500).json(err);
+	}
 });
 
 router.get("/edit/:id", withAuth, (req, res) => {

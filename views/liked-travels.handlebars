@@ -1,0 +1,15 @@
+
+{{!-- {{#if likes.locations.length }} --}}
+    <div class="col-lg-8">
+      <h2>My Liked Locations</h2>
+      <div class="container-fluid">
+        <div class="row justify-content-even">
+          {{#each likes as |like|}}
+          <div>
+            {{> location-info like.location}}
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+{{!-- {{/if}} --}}
