@@ -78,13 +78,13 @@ router.get("/liked-travels", async (req, res) => {
 					}
 				]
 			}
-		}).map((el) => {
-			el.get({ plain: true });
 		});
+
+		// !Current Issue with getting this to convert to plain with map...
 
 		console.log(dbLikeData);
 
-		res(dbLikeData);
+		res.json(dbLikeData);
 	} catch (err) {
 		res.status(500).json(err);
 	}
