@@ -9,6 +9,7 @@
   * [Installation](#installation)
   * [Usage](#usage)
   * [Packages](#packages)
+  * [Future Developments](#future-developments)
   * [Contributions](#contributions)
   * [Tests](#tests)
   * [License](#license)
@@ -59,6 +60,11 @@
 * [Handlebars](https://handlebarsjs.com/)
 * [Bootstrap](https://getbootstrap.com/)
 * [Heroku](https://id.heroku.com/)
+
+## **Future Developments**
+* Allow user to "like" a location by clicking "Add to My Travels" and save the users likes in their personal dashboard
+* Average the ratings for each location to show on the location cards and eventually connect the user to a separate page to let them view by ratings
+* Pull in other APIs to connect user to travel deals, flights, activities to do why vacationing to that location, languages spoken at that location, etc. 
  
 
 ## **Contributions**
