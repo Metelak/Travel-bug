@@ -1,12 +1,14 @@
-# **Travel-bug**
+# **Travel-bug**     [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 * https://travelbug-project.herokuapp.com/ 
 
 ## Table of Contents
 
   * [User-Story](#user-story)
   * [Description](#description)
+  * [Preview](#preview)
   * [Installation](#installation)
   * [Usage](#usage)
+  * [Packages](#packages)
   * [Contributions](#contributions)
   * [Tests](#tests)
   * [License](#license)
@@ -23,16 +25,30 @@
   ## **Preview**
 ![travelbug-preview](https://user-images.githubusercontent.com/94068596/157773143-4e26809c-d6e7-428f-9ae7-0de7cf5b188a.jpg)
   ## **Installation**
-  * Download [Travel-bug repo](https://github.com/Metelak/Travel-bug) to local file
-  * Open files in VS Code 
-  * Type "npm install" or "npm i" in command line 
-  * Update .env file to have your mysql username and password
-  * Login to mysql "mysql -u root -p", add password
-  * Type "CREAT DATABASE travelbug_db;" and "source db/schema.sql;" and "USE travelbug_db;" and then "quit"
-  * Type "npm run seed" in command line
+  Step 1. Download [Travel-bug repo](https://github.com/Metelak/Travel-bug) to local file and open files in VS Code
+
+  Step 2. Type "npm install" or "npm i" in command line to install all the dependencies
+
+  Step 3. create a .env file and add code below with your MySql credintals
+  ```
+   DB_NAME='travelbug_db'
+   DB_USER='your-mysql-username'
+   DB_PASSWORD='your-mysql-password'
+  ```
+  Step 4. Source the schema
+  * Login in to MySql shell - ```mysql -u <username> -p ```
+  * Run command to source schema - ``` source db/schema.sql ```
+
+  Step 5. Seed the tables 
+  ```
+  npm run seed
+  ```
   ## **Usage**
-  * Type "npm start" in command line to run the server locally 
-  * Or visit our webpage 
+  * To run the server locally after installation Run
+      ```
+      npm start
+     ```
+  * Or visit our webpage [Travel Bug](https://travelbug-project.herokuapp.com/ )
 ## **Packages**
 * [Express](http://expressjs.com/)
 * [MySQL2](https://www.npmjs.com/package/mysql2)

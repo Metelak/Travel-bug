@@ -56,7 +56,7 @@ router.get("/:id", (req, res) => {
 			},
 			{
 				model: Comment,
-				attributes: ["id", "comment_text", "user_id"],
+				attributes: ["id", "comment_text", "user_id", "createdAt"],
 				include: {
 					model: User,
 					attributes: ["username", "email"]
@@ -106,15 +106,18 @@ router.post("/", withAuth, async (req, res) => {
 });
 
 router.put("/:id", withAuth, async (req, res) => {
-	if (req.body.title) {
-		const newPic = await getPicture(title);
-		req.body.picture = newPic;
-	}
-	Location.update(req.body, {
-		where: {
-			id: req.params.id
-		}
-	})
+	const findPicture = await getPicture(req.body.title);
+	Location.update(
+		{
+			title: req.body.title,
+			text: req.body.text,
+			picture: findPicture
+		},
+		{
+			where: {
+				id: req.params.id
+			}
+		})
 		.then((dbLoctaionData) => {
 			if (!dbLoctaionData) {
 				res.status(404).json({ message: "No location found with this id" });
